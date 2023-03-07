@@ -10,6 +10,10 @@ export default function Signup({ handleShowSignin }) {
 
   async function creatAccount(e) {
     e.preventDefault();
+    if (!username) return alert("Please fill in the username field.");
+    if (!email) return alert("Please fill in the email field.");
+    if (!password) return alert("Please fill in the password field.");
+    if (!pictureUrl) return alert("Please fill in the picture field.");
 
     const url = `${process.env.REACT_APP_API_URL}/signup`;
 
@@ -36,7 +40,6 @@ export default function Signup({ handleShowSignin }) {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
           ></input>
         </label>
         <label htmlFor="password">
@@ -46,7 +49,6 @@ export default function Signup({ handleShowSignin }) {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
           ></input>
         </label>
         <label htmlFor="username">
@@ -56,7 +58,6 @@ export default function Signup({ handleShowSignin }) {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            required
           ></input>
         </label>
         <label htmlFor="pictureUrl">
@@ -66,7 +67,6 @@ export default function Signup({ handleShowSignin }) {
             type="url"
             value={pictureUrl}
             onChange={(e) => setPictureUrl(e.target.value)}
-            required
           ></input>
         </label>
         <Button type="submit">Entrar</Button>
