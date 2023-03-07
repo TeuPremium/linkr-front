@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalStyle from "./assets/styles/globalStyle";
+
 import Feed from "./pages/feed/feed";
 import Hashtags from "./pages/hashtag/hashtags";
 import Home from "./pages/home/home";
@@ -13,6 +14,7 @@ function App() {
         <Route path="/timeline" element={<Feed />} />
         <Route path="/hashtags" element={<Hashtags />} />
       </Routes>
+
       <GlobalStyle />
     </BrowserRouter>
   );

@@ -21,6 +21,7 @@ export default function Signin({ handleShowSignup }) {
       const promisse = await axios.post(url, data);
       console.log(promisse.data);
       if (promisse.data) {
+        localStorage.setItem("auth", JSON.stringify(promisse.data));
         navigate("/timeline");
       }
     } catch (error) {
