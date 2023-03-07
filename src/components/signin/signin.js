@@ -7,6 +7,7 @@ export default function Signin({ handleShowSignup }) {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   async function login(e) {
     e.preventDefault();
@@ -24,6 +25,8 @@ export default function Signin({ handleShowSignup }) {
       }
     } catch (error) {
       if (error.response) return alert("Incorrect e-mail or password.");
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -48,7 +51,9 @@ export default function Signin({ handleShowSignup }) {
             onChange={(e) => setPassword(e.target.value)}
           ></input>
         </label>
-        <Button type="submit">Entrar</Button>
+        <Button type="submit" disabled={isLoading}>
+          {isLoading ? "loading..." : "Sign In"}
+        </Button>
       </form>
       <StyledLink onClick={handleShowSignup}>
         First time? Create an account!
