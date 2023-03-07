@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import GlobalStyle from "../assets/styles/globalStyle";
 import Hashtags from "../pages/hashtag/hashtags";
 import Home from "../pages/home/home";
 import Signin from "../pages/signin/signin";
@@ -13,6 +14,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/hashtags" element={<Hashtags />} />
       </Routes>
+      <GlobalStyle />
     </BrowserRouter>
   );
 }
