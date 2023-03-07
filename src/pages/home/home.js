@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Signin from "../../components/signin/signin";
-import Signup from "../../components/signup.js/signup";
+import Signup from "../../components/signup/signup";
 import { BodyHome, ContainerHome } from "./styled";
 
 export default function Home() {
