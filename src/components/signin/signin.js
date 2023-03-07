@@ -8,7 +8,7 @@ export default function Signin({ handleShowSignup }) {
   async function login(e) {
     e.preventDefault();
     if (!email) return alert("Please fill in the email field.");
-    if (!password) return alert("Please fill in the password field.");
+    if (!password) return alert("Please fill in the password field");
   }
 
   return (
