@@ -22,7 +22,7 @@ export default function Signin({ handleShowSignup }) {
         <label htmlFor="password">
           <input
             id="password"
-            placeholder="Senha"
+            placeholder="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

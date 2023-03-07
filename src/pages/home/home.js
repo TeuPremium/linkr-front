@@ -10,13 +10,21 @@ export default function Home() {
     setShowSignup(true);
   }
 
+  function handleShowSignin() {
+    setShowSignup(false);
+  }
+
   return (
     <ContainerHome>
       <BodyHome>
         <h1>Linkr</h1>
         <h2>save, share and discover the best links on the web</h2>
       </BodyHome>
-      {showSignup ? <Signup /> : <Signin handleShowSignup={handleShowSignup} />}
+      {showSignup ? (
+        <Signup handleShowSignin={handleShowSignin} />
+      ) : (
+        <Signin handleShowSignup={handleShowSignup} />
+      )}
     </ContainerHome>
   );
 }
