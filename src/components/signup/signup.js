@@ -7,6 +7,7 @@ export default function Signup({ handleShowSignin }) {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [pictureUrl, setPictureUrl] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   async function creatAccount(e) {
     e.preventDefault();
@@ -26,7 +27,10 @@ export default function Signup({ handleShowSignin }) {
         handleShowSignin();
       }
     } catch (error) {
-      console.log(error.response.status);
+      if (error.response.status === 409)
+        return alert("E-mail already registered.");
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -69,7 +73,9 @@ export default function Signup({ handleShowSignin }) {
             onChange={(e) => setPictureUrl(e.target.value)}
           ></input>
         </label>
-        <Button type="submit">Entrar</Button>
+        <Button type="submit" disabled={isLoading}>
+          {isLoading ? "Carregando..." : "Cadastrar"}
+        </Button>
       </form>
       <StyledLink onClick={handleShowSignin}>Switch back to log in</StyledLink>
     </BodySignup>
