@@ -5,10 +5,15 @@ export default function Signin({ handleShowSignup }) {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
-  //onSubmit={login}
+  async function login(e) {
+    e.preventDefault();
+    if (!email) return alert("Please fill in the email field.");
+    if (!password) return alert("Please fill in the password field.");
+  }
+
   return (
     <BodySignin>
-      <form>
+      <form onSubmit={login}>
         <label htmlFor="email">
           <input
             id="email"
@@ -16,7 +21,6 @@ export default function Signin({ handleShowSignup }) {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
           ></input>
         </label>
         <label htmlFor="password">
@@ -26,7 +30,6 @@ export default function Signin({ handleShowSignup }) {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
           ></input>
         </label>
         <Button type="submit">Entrar</Button>
