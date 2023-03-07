@@ -44,6 +44,12 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+h1{
+	font-size: 43px;
+	color: white;
+	font-family: Oswald;
+}
 `;
 
 export default GlobalStyle;
