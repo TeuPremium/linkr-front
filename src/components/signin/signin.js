@@ -20,7 +20,7 @@ export default function Signin({ handleShowSignup }) {
       const promisse = await axios.post(url, data);
       console.log(promisse.data);
       if (promisse.data) {
-        navigate("/feed");
+        navigate("/timeline");
       }
     } catch (error) {
       if (error.response) return alert("Incorrect e-mail or password.");

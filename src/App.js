@@ -10,7 +10,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/feed" element={<Feed />} />
+        <Route path="/timeline" element={<Feed />} />
         <Route path="/hashtags" element={<Hashtags />} />
       </Routes>
       <GlobalStyle />
