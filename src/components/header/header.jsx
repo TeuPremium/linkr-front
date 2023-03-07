@@ -18,17 +18,22 @@ return(<>
 const Container = styled.div`
     background-color: #151515;
     height: 72px;
+    width: 100%;
     padding-left: 28px;
     padding-top: 10px;
-    padding-right: 10px;
+    
     justify-content: space-between;
     display: flex;
+    position: fixed;
+    top: 0;
 `
 
 const UserContainer = styled.div`
     display: flex;
     align-items: center;
-    
+    margin-right: 38px;
+    bottom: 5px;
+    position: relative;
     img{
         margin-left: 16px;
         width: 53px;
