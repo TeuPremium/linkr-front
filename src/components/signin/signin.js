@@ -1,14 +1,30 @@
 import { useState } from "react";
 import { BodySignin, Button, StyledLink } from "./styled";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Signin({ handleShowSignup }) {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
 
   async function login(e) {
     e.preventDefault();
     if (!email) return alert("Please fill in the email field.");
     if (!password) return alert("Please fill in the password field.");
+
+    const url = `${process.env.REACT_APP_API_URL}/signin`;
+    const data = { email, password };
+
+    try {
+      const promisse = await axios.post(url, data);
+      console.log(promisse.data);
+      if (promisse.data) {
+        navigate("/feed");
+      }
+    } catch (error) {
+      if (error.response) return alert("Incorrect e-mail or password.");
+    }
   }
 
   return (
