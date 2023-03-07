@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BodySignin, Button, StyledLink } from "./styled";
 
-export default function Signin() {
+export default function Signin({ handleShowSignup }) {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
@@ -31,7 +31,9 @@ export default function Signin() {
         </label>
         <Button type="submit">Entrar</Button>
       </form>
-      <StyledLink>First time? Create an account!</StyledLink>
+      <StyledLink onClick={handleShowSignup}>
+        First time? Create an account!
+      </StyledLink>
     </BodySignin>
   );
 }
