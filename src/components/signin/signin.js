@@ -1,3 +1,5 @@
+import { BodySignin } from "./styled";
+
 export default function Signin() {
-  return <div>login aqui</div>;
+  return <BodySignin>login aqui</BodySignin>;
 }
