@@ -1,10 +1,5 @@
 import styled from "styled-components";
 
-export const ContainerHome = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
-
 export const BodyHome = styled.div`
   height: 100vh;
   background-color: #151515;
