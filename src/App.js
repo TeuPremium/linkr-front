@@ -11,7 +11,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/timeline" element={<Feed />} />
+        <Route path="/timeline" element={<Feed userProfile={false}/>} />
+        <Route path="/timeline" element={<Feed userProfile={true}/>} />
         <Route path="/hashtags" element={<Hashtags />} />
       </Routes>
 

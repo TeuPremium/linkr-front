@@ -4,9 +4,11 @@ import { useForm } from "react-hook-form";
 export default function(prop){
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => console.log(data);
-  
+    const userProfile = prop.userProfile
     console.log(watch("example")); // watch input value by passing the name of it
+    console.log(userProfile)
 
+    if(!userProfile){
     return(<>
         <Container>
         <h1>timeline</h1>
@@ -21,7 +23,7 @@ export default function(prop){
             
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <input placeholder="http://..." {...register("url", {required:true})} />
-                    <input placeholder="Awesome article about #javascript" {...register("postCommentary", { required: true })} />
+                    <input placeholder="Awesome article about #javascript" {...register("comment", { required: true })} />
                     {errors.postCommentary && <span>This field is required</span>}
                     <div>
                     <input type="submit" />
@@ -42,6 +44,25 @@ export default function(prop){
         </Container>
         
     </>)
+    }
+    else{
+        return(
+           <Container>
+        <h1>timeline</h1>
+        <PostContainer color={"#171717"}>
+            <div>
+            <img src="https://imgs.search.brave.com/7KHxJqOc757ysQ-_b0Tcyzs67rTqJ4Bv5dKrE9P77Us/rs:fit:900:900:1/g:ce/aHR0cHM6Ly92aWdu/ZXR0ZS53aWtpYS5u/b2Nvb2tpZS5uZXQv/eW91dHViZS9pbWFn/ZXMvYi9iMy9HcmFu/ZGF5eS5qcGcvcmV2/aXNpb24vbGF0ZXN0/P2NiPTIwMTgwODAz/MDAyODU1"/>
+            </div>
+            <UsersPosts>    
+            <h3>username</h3>
+            <h4>Muito maneiro esse tutorial de Material UI com React, deem uma olhada!</h4>
+                Placeholder box
+            </UsersPosts>   
+        </PostContainer>
+        </Container>
+         
+        )
+    }
     }
 
     
