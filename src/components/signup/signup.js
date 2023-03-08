@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { BodySignup, Button, StyledLink } from "./styled";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export default function Signup({ handleShowSignin }) {
+export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [pictureUrl, setPictureUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   async function creatAccount(e) {
     e.preventDefault();
@@ -24,7 +26,7 @@ export default function Signup({ handleShowSignin }) {
       const promisse = await axios.post(url, data);
 
       if (promisse.data) {
-        handleShowSignin();
+        navigate("/");
       }
     } catch (error) {
       if (error.response.status === 409)
@@ -77,7 +79,7 @@ export default function Signup({ handleShowSignin }) {
           {isLoading ? "loading..." : "Sign Up"}
         </Button>
       </form>
-      <StyledLink onClick={handleShowSignin}>Switch back to log in</StyledLink>
+      <StyledLink to="/">Switch back to log in</StyledLink>
     </BodySignup>
   );
 }
