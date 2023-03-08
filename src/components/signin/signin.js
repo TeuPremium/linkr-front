@@ -3,7 +3,7 @@ import { BodySignin, Button, StyledLink } from "./styled";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-export default function Signin({ handleShowSignup }) {
+export default function Signin({}) {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
@@ -56,9 +56,7 @@ export default function Signin({ handleShowSignup }) {
           {isLoading ? "loading..." : "Sign In"}
         </Button>
       </form>
-      <StyledLink onClick={handleShowSignup}>
-        First time? Create an account!
-      </StyledLink>
+      <StyledLink to="/sign-up">First time? Create an account!</StyledLink>
     </BodySignin>
   );
 }
