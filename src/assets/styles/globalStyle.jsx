@@ -50,6 +50,9 @@ h1{
 	color: white;
 	font-family: Oswald;
 }
+* {
+	box-sizing: border-box;
+}
 `;
 
 export default GlobalStyle;
