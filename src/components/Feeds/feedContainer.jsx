@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 export default function (prop) {
   const {
@@ -45,6 +46,10 @@ export default function (prop) {
           <PostContainer color={"#171717"}>
             <div>
               <img src="https://imgs.search.brave.com/7KHxJqOc757ysQ-_b0Tcyzs67rTqJ4Bv5dKrE9P77Us/rs:fit:900:900:1/g:ce/aHR0cHM6Ly92aWdu/ZXR0ZS53aWtpYS5u/b2Nvb2tpZS5uZXQv/eW91dHViZS9pbWFn/ZXMvYi9iMy9HcmFu/ZGF5eS5qcGcvcmV2/aXNpb24vbGF0ZXN0/P2NiPTIwMTgwODAz/MDAyODU1" />
+              <LikeContainer>
+                <HeartIcon/>
+                <h1>x likes</h1>
+              </LikeContainer>
             </div>
             <UsersPosts>
               <h3>username</h3>
@@ -59,6 +64,10 @@ export default function (prop) {
           <PostContainer color={"#171717"}>
             <div>
               <img src="https://imgs.search.brave.com/7KHxJqOc757ysQ-_b0Tcyzs67rTqJ4Bv5dKrE9P77Us/rs:fit:900:900:1/g:ce/aHR0cHM6Ly92aWdu/ZXR0ZS53aWtpYS5u/b2Nvb2tpZS5uZXQv/eW91dHViZS9pbWFn/ZXMvYi9iMy9HcmFu/ZGF5eS5qcGcvcmV2/aXNpb24vbGF0ZXN0/P2NiPTIwMTgwODAz/MDAyODU1" />
+              <LikeContainer>
+                <HeartIcon/>
+                <h1>x likes</h1>
+              </LikeContainer>
             </div>
             <UsersPosts>
               <h3>username</h3>
@@ -73,6 +82,10 @@ export default function (prop) {
           <PostContainer color={"#171717"}>
             <div>
               <img src="https://imgs.search.brave.com/7KHxJqOc757ysQ-_b0Tcyzs67rTqJ4Bv5dKrE9P77Us/rs:fit:900:900:1/g:ce/aHR0cHM6Ly92aWdu/ZXR0ZS53aWtpYS5u/b2Nvb2tpZS5uZXQv/eW91dHViZS9pbWFn/ZXMvYi9iMy9HcmFu/ZGF5eS5qcGcvcmV2/aXNpb24vbGF0ZXN0/P2NiPTIwMTgwODAz/MDAyODU1" />
+              <LikeContainer>
+                <HeartIcon/>
+                <h1>x likes</h1>
+              </LikeContainer>
             </div>
             <UsersPosts>
               <h3>username</h3>
@@ -83,8 +96,8 @@ export default function (prop) {
               Placeholder box
             </UsersPosts>
           </PostContainer>
-        
-          
+
+
         </Container>
 
         <TrendingBoxContainer>
@@ -95,16 +108,16 @@ export default function (prop) {
           </HeaderTrending>
 
           <HashtagContainer>
-           <h1># hashtag example</h1>
-           <h1># hashtag example</h1>
-           <h1># hashtag example</h1>
-           <h1># hashtag example</h1>
-           <h1># hashtag example</h1>
-           <h1># hashtag example</h1>
-           <h1># hashtag example</h1>
-           <h1># hashtag example</h1>
-           <h1># hashtag example</h1>
-           <h1># hashtag example</h1>
+            <h1># hashtag example</h1>
+            <h1># hashtag example</h1>
+            <h1># hashtag example</h1>
+            <h1># hashtag example</h1>
+            <h1># hashtag example</h1>
+            <h1># hashtag example</h1>
+            <h1># hashtag example</h1>
+            <h1># hashtag example</h1>
+            <h1># hashtag example</h1>
+            <h1># hashtag example</h1>
           </HashtagContainer>
 
         </TrendingBoxContainer>
@@ -213,6 +226,24 @@ const HashtagContainer = styled.div`
   }
 `
 
+const LikeContainer = styled.div`
+  height: 30px;
+  width: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 22px;
+  margin-top: 10px;
+  h1{
+    font-size: 11px;
+    margin-top: 6px;
+  }
+`
+
+const HeartIcon = styled(AiOutlineHeart)`
+  color: #FFFFFF;
+  scale: 2;
+`
 
 
 const ContainerFeed = styled.div`
