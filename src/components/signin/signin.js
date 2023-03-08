@@ -13,10 +13,11 @@ export default function Signin({}) {
     e.preventDefault();
     if (!email) return alert("Please fill in the email field.");
     if (!password) return alert("Please fill in the password field.");
-
+    
     const url = `${process.env.REACT_APP_API_URL}/signin`;
     const data = { email, password };
-
+    
+    console.log(process.env.REACT_APP_API_URL)
     try {
       const promisse = await axios.post(url, data);
       console.log(promisse.data);
@@ -25,6 +26,7 @@ export default function Signin({}) {
         navigate("/timeline");
       }
     } catch (error) {
+      console.log(error.response)
       if (error.response) return alert("Incorrect e-mail or password.");
     } finally {
       setIsLoading(false);
