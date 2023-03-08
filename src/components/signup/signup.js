@@ -74,7 +74,7 @@ export default function Signup({ handleShowSignin }) {
           ></input>
         </label>
         <Button type="submit" disabled={isLoading}>
-          {isLoading ? "Carregando..." : "Cadastrar"}
+          {isLoading ? "loading..." : "Sign Up"}
         </Button>
       </form>
       <StyledLink onClick={handleShowSignin}>Switch back to log in</StyledLink>

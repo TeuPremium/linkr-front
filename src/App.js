@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import GlobalStyle from "./assets/styles/globalStyle";
+
 import Feed from "./pages/feed/feed";
 import Hashtags from "./pages/hashtag/hashtags";
 import Home from "./pages/home/home";
@@ -10,9 +11,10 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/feed" element={<Feed />} />
+        <Route path="/timeline" element={<Feed />} />
         <Route path="/hashtags" element={<Hashtags />} />
       </Routes>
+
       <GlobalStyle />
     </BrowserRouter>
   );
