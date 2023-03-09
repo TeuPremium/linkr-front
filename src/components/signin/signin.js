@@ -17,12 +17,13 @@ export default function Signin({}) {
     const url = `${process.env.REACT_APP_API_URL}/signin`;
     const data = { email, password };
     
-    console.log(process.env.REACT_APP_API_URL)
     try {
       const promisse = await axios.post(url, data);
       console.log(promisse.data);
       if (promisse.data) {
-        localStorage.setItem("auth", JSON.stringify(promisse.data));
+        localStorage.setItem("auth", JSON.stringify(promisse.data.token));
+        localStorage.setItem("email", JSON.stringify(promisse.data.email))
+        localStorage.setItem("userId", JSON.stringify(promisse.data.userId))
         navigate("/timeline");
       }
     } catch (error) {

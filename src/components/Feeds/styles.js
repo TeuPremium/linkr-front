@@ -64,15 +64,20 @@ export const WritePostContainer = styled.div`
   padding-right: 10px;
   box-sizing: border-box;
   form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     div {
       width: 112px;
+      position: static;
+      right: 0;
       input {
         background-color: #1877f2;
         color: white;
       }
     }
-  }
-  input {
+}
+input {
     width: 100%;
     height: 30px;
     left: 501px;
@@ -81,7 +86,10 @@ export const WritePostContainer = styled.div`
     border-radius: 5px;
     border-style: none;
     margin-top: 5px;
-  }
+}
+input:nth-of-type(2){
+    height: 66px;
+}
 `;
 export const UsersPosts = styled.div`
   height: 155px;
