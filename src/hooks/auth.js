@@ -9,18 +9,17 @@ export function tokenIsValid() {
 
     const currentTime = Date.now() / 1000;
     if (decodedToken.exp < currentTime) {
-      window.location.href = "/";
       localStorage.removeItem("token");
       localStorage.removeItem("email");
       localStorage.removeItem("userId");
-      console.log("oi");
+      window.location.href = "/";
     } else {
     }
   } else {
-    window.location.href = "/";
     localStorage.removeItem("token");
     localStorage.removeItem("email");
     localStorage.removeItem("userId");
+    window.location.href = "/";
   }
 }
 
