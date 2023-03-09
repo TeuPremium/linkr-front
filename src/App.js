@@ -5,6 +5,7 @@ import Feed from "./pages/feed/feed";
 import Hashtags from "./pages/hashtag/hashtags";
 import Login from "./pages/login/login";
 import SignUp from "./pages/signup/signup";
+import UserPage from "./pages/user/User";
 
 function App() {
   //notei que o signin e sigup são componentes da primeira pagina, vou colocar na home por hora.
@@ -16,6 +17,7 @@ function App() {
         <Route path="/timeline" element={<Feed timeline={true}/>} />
         <Route path="/user" element={<Feed timeline={false}/>} />
         <Route path="/hashtags" element={<Hashtags />} />
+        <Route path="/user/:id" element={<UserPage />} />
       </Routes>
 
       <GlobalStyle />
