@@ -8,17 +8,17 @@ import { UserPostContainer } from "./postContainer";
 
 
 
-export default  function(prop){
+export default function(prop){
     const { register, handleSubmit, formState: { errors } } = useForm();
     const url = `${process.env.REACT_APP_API_URL}/posts`;
     console.log(localStorage.userId)
     const [postArray, setPostArray] = useState("")
     
+    const {auth, userId} = localStorage
+    console.log(auth)
     async function onSubmit(data){
       
-      const {auth, userId} = localStorage
       data.userId = userId;
-      data.userId = localStorage.userId
       const createPost = await axios.post(url, data).catch((error) => {alert("there was en error publishing your link")});     
       console.log(data)
       
@@ -27,13 +27,15 @@ export default  function(prop){
       const promise = axios.get(`${url}`)
       promise.then((e) => setPostArray(e.data))
       promise.catch(console.log)
-      } ,[])    
-  
+    } ,[])    
+    
+    
     const timeline = prop.timeline
-
+    
     
     if(timeline && postArray){
       console.log(postArray)
+      
       
     return(<>
         <ContainerFeed>
@@ -57,18 +59,13 @@ export default  function(prop){
                 </form>
             </WritePostContainer>
           </PostContainer>
-          
-          <UserPostContainer/>
 
-          <UserPostContainer/>
-
-          <UserPostContainer/>
-
-          <UserPostContainer/>
-
-
-          
-
+         { postArray.map((e) => <UserPostContainer 
+          username={e.username}
+          image={e.image}
+          url={e.url}
+          comment={e.comment}
+           />)}
 
         </Container>
 
