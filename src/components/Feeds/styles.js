@@ -92,11 +92,33 @@ input:nth-of-type(2){
 }
 `;
 export const UsersPosts = styled.div`
-  height: 155px;
+  height: 100%;
+  width: 83%;
   left: 502px;
   top: 596px;
-  background-color: white;
+  background-color: darkgrey;
+  padding-left: 18px;
+
 `;
+
+export const UserHeader = styled.div`
+display: flex;
+justify-content: space-between;
+div{
+  width: 42px;
+  display: flex;
+  justify-content: space-between;
+}
+`
+
+export const CommentContainer = styled.div`
+margin-top: 12px;
+`
+
+export const LinkContainer = styled.div`
+margin-top: 12px;
+
+`
 
 export const Container = styled.div`
   width: 42%;
