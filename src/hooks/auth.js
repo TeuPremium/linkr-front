@@ -1,6 +1,6 @@
 //se user console.log(getToken() a resposta vai ser o token)
 export function getToken() {
-  const data = JSON.parse(localStorage.getItem("auth"));
+  const data = JSON.parse(localStorage.getItem("token"));
   const token = data.token;
   return token;
 }
@@ -18,12 +18,12 @@ export function authToken(token) {
 
 //não sei se irão precisar dessas duas, mas ai estão. email e id do usuario recebidos no login.
 export function getUserId() {
-  const data = JSON.parse(localStorage.getItem("auth"));
+  const data = JSON.parse(localStorage.getItem("userId"));
   const userId = data.userId;
   return userId;
 }
 export function getEmail() {
-  const data = JSON.parse(localStorage.getItem("auth"));
+  const data = JSON.parse(localStorage.getItem("email"));
   const email = data.email;
   return email;
 }
