@@ -3,7 +3,7 @@ import { Container } from "./styled";
 
 export default function ArrowDown() {
   return (
-    <Container onClick={handleClick}>
+    <Container>
       <svg
         width="23"
         height="17"
