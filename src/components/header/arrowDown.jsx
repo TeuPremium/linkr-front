@@ -1,16 +1,9 @@
 import React, { useState } from "react";
 import { Container } from "./styled";
 
-export default function ArrowDown({ handleLogout }) {
-  const [direction, setDirection] = useState("down");
-
-  const handleClick = () => {
-    setDirection(direction === "down" ? "up" : "down");
-    handleLogout();
-  };
-
+export default function ArrowDown() {
   return (
-    <Container onClick={handleClick} direction={direction}>
+    <Container onClick={handleClick}>
       <svg
         width="23"
         height="17"
