@@ -13,8 +13,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/timeline" element={<Feed userProfile={false}/>} />
-        <Route path="/user" element={<Feed userProfile={true}/>} />
+        <Route path="/timeline" element={<Feed timeline={true}/>} />
+        <Route path="/user" element={<Feed timeline={false}/>} />
         <Route path="/hashtags" element={<Hashtags />} />
       </Routes>
 

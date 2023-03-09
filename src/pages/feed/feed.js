@@ -6,7 +6,7 @@ export default function Feed(prop) {
   <>
     {/* colocar imagem por prop no header */}
     <Header/>
-    <FeedContainer userProfile={prop.userProfile}/>
+    <FeedContainer timeline={prop.timeline}/>
     
   </>
   );
