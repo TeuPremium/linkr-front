@@ -12,6 +12,7 @@ export const Container = styled.div`
 `;
 
 export const ContainerHeader = styled.div`
+  z-index: 2;
   background-color: #151515;
   height: 72px;
   width: 100%;
