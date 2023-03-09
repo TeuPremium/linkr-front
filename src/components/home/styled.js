@@ -19,12 +19,13 @@ export const BodyHome = styled.div`
   }
   h2 {
     padding-left: 15%;
-    width: 442px;
+    width: 700px;
     font-family: "Oswald", sans-serif;
     font-size: 43px;
     font-weight: 700;
     line-height: 64px;
     text-align: left;
     color: #ffffff;
+    box-sizing: border-box;
   }
 `;

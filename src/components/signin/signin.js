@@ -21,10 +21,13 @@ export default function Signin({}) {
       const promisse = await axios.post(url, data);
       console.log(promisse.data);
       if (promisse.data) {
-        localStorage.setItem("auth", JSON.stringify(promisse.data));
+        localStorage.setItem("token", JSON.stringify(promisse.data.token));
+        localStorage.setItem("email", JSON.stringify(promisse.data.email));
+        localStorage.setItem("userId", JSON.stringify(promisse.data.userId));
         navigate("/timeline");
       }
     } catch (error) {
+      console.log(error.response);
       if (error.response) return alert("Incorrect e-mail or password.");
     } finally {
       setIsLoading(false);
