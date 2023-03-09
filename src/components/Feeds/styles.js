@@ -106,8 +106,7 @@ export const Container = styled.div`
 `;
 
 
-
-export const LikeContainer = styled.div`
+  export const LikeContainer = styled.div`
   height: 30px;
   width: 40px;
   display: flex;
@@ -119,11 +118,6 @@ export const LikeContainer = styled.div`
     font-size: 11px;
     margin-top: 6px;
   }
-`
-
-export const HeartIcon = styled(AiOutlineHeart)`
-  color: #FFFFFF;
-  scale: 2;
 `
 
 

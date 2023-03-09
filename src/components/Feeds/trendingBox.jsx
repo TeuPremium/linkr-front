@@ -2,6 +2,10 @@ import styled from "styled-components"
 import { TrendingBoxContainer, HeaderTrending, HashtagContainer } from "./styles" 
 
 export default function TrendingTags(prop){
+
+  
+
+
     return(
         <>
          <TrendingBoxContainer>

@@ -6,6 +6,9 @@ import TrendingTags from "../../components/Feeds/trendingBox";
 export default function hashtags() {
 
 
+
+  
+
   return (
     <>
       <Header />
