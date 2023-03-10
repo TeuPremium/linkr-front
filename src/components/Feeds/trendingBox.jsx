@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 export default function TrendingTags(prop) {
 
 
-    const url = `http://localhost:5000/rank`
+    const url = `${process.env.REACT_APP_API_URL}/rank`
 
     const [rank, setRank] = useState()
 
