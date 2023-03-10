@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import PencilIcon from "../../assets/styles/pencilIcon";
 import TrashIcon from "../../assets/styles/trashIcon";
 import { PostContainer, LikeContainer, HeartIcon, UsersPosts, UserHeader, LinkContainer, CommentContainer } from "./styles";
-
+import { LikeButton } from "../../hooks/likeButton";
 
 export function UserPostContainer(prop){
   console.log(prop.image)
@@ -12,8 +12,7 @@ export function UserPostContainer(prop){
       <div>
         <img src={prop.image} />
         <LikeContainer>
-          <HeartIcon/>
-          <h1>x likes</h1>
+          <LikeButton/>
         </LikeContainer>
       </div>
 
