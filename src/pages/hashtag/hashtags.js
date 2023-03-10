@@ -13,16 +13,20 @@ import {
 import { UserPostContainer } from "../../components/Feeds/postContainer";
 import TrendingTags from "../../components/Feeds/trendingBox";
 import { tokenIsValid } from "../../hooks/auth";
+import { useParams } from "react-router-dom";
 
-export default function hashtags() {
+export default function Hashtags() {
   tokenIsValid();
+
+  const { hashtag } = useParams()
+
   return (
     <>
       <Header />
 
       <ContainerFeed>
         <Container>
-          <h1># hashtag</h1>
+          <h1># {hashtag}</h1>
 
           <UserPostContainer />
           <UserPostContainer />
