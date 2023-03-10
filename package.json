@@ -10,6 +10,9 @@
     "dayjs": "^1.11.7",
     "dotenv": "^16.0.3",
     "jwt-decode": "^3.1.2",
+    "link-preview-js": "^3.0.4",
+    "metadata-scraper": "^0.2.61",
+    "open-graph-scraper": "^5.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.5",
@@ -17,6 +20,8 @@
     "react-router-dom": "^6.8.2",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.8",
+    "url-metadata": "^2.5.0",
+    "util": "^0.12.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -42,5 +47,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
+    "https-browserify": "^1.0.0",
+    "stream-browserify": "^3.0.0"
   }
 }
