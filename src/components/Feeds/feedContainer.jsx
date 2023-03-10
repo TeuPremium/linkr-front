@@ -27,10 +27,9 @@ export default function(prop){
     }
     
     useEffect( ()=>{
-      // precisa consertar o then/catch
       const promise = axios.get(`${url}`)
       promise.then((e) => setPostArray(e.data))
-      promise.catch(alert("An error occured while trying to fetch the posts, please refresh the page"))
+      promise.catch((error) => alert("An error occured while trying to fetch the posts, please refresh the page"))
     } ,[])    
     
     
