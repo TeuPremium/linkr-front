@@ -9,6 +9,7 @@ import { UserPostContainer } from "./postContainer";
 
 
 export default function(prop){
+    console.log(prop.delete)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const url = `${process.env.REACT_APP_API_URL}/posts`;
     console.log(localStorage.userId)
@@ -16,6 +17,7 @@ export default function(prop){
     
     const {auth, userId} = localStorage
     console.log(auth)
+
     async function onSubmit(data){
       
       data.userId = userId;
@@ -23,10 +25,12 @@ export default function(prop){
       console.log(data)
       
     }
+    
     useEffect( ()=>{
+      // precisa consertar o then/catch
       const promise = axios.get(`${url}`)
       promise.then((e) => setPostArray(e.data))
-      promise.catch(console.log)
+      promise.catch(alert("An error occured while trying to fetch the posts, please refresh the page"))
     } ,[])    
     
     
@@ -65,6 +69,7 @@ export default function(prop){
           image={e.image}
           url={e.url}
           comment={e.comment}
+          id={e.postId}
            />)}
 
         </Container>
