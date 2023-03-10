@@ -41,6 +41,7 @@ export default function Signup() {
       <form onSubmit={creatAccount}>
         <label htmlFor="email">
           <input
+            data-test="email"
             id="email"
             placeholder="e-mail"
             type="email"
@@ -50,6 +51,7 @@ export default function Signup() {
         </label>
         <label htmlFor="password">
           <input
+            data-test="password"
             id="password"
             placeholder="password"
             type="password"
@@ -59,6 +61,7 @@ export default function Signup() {
         </label>
         <label htmlFor="username">
           <input
+            data-test="username"
             id="username"
             placeholder="username"
             type="text"
@@ -68,6 +71,7 @@ export default function Signup() {
         </label>
         <label htmlFor="pictureUrl">
           <input
+            data-test="picture-url"
             id="pictureUrl"
             placeholder="picture url"
             type="url"
@@ -75,11 +79,13 @@ export default function Signup() {
             onChange={(e) => setPictureUrl(e.target.value)}
           ></input>
         </label>
-        <Button type="submit" disabled={isLoading}>
+        <Button data-test="sign-up-btn" type="submit" disabled={isLoading}>
           {isLoading ? "loading..." : "Sign Up"}
         </Button>
       </form>
-      <StyledLink to="/">Switch back to log in</StyledLink>
+      <StyledLink data-test="login-link" to="/">
+        Switch back to log in
+      </StyledLink>
     </BodySignup>
   );
 }

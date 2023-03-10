@@ -39,6 +39,7 @@ export default function Signin({}) {
       <form onSubmit={login}>
         <label htmlFor="email">
           <input
+            data-test="email"
             id="email"
             placeholder="e-mail"
             type="email"
@@ -48,6 +49,7 @@ export default function Signin({}) {
         </label>
         <label htmlFor="password">
           <input
+            data-test="password"
             id="password"
             placeholder="password"
             type="password"
@@ -55,11 +57,13 @@ export default function Signin({}) {
             onChange={(e) => setPassword(e.target.value)}
           ></input>
         </label>
-        <Button type="submit" disabled={isLoading}>
+        <Button data-test="login-btn" type="submit" disabled={isLoading}>
           {isLoading ? "loading..." : "Sign In"}
         </Button>
       </form>
-      <StyledLink to="/sign-up">First time? Create an account!</StyledLink>
+      <StyledLink data-test="sign-up-link" to="/sign-up">
+        First time? Create an account!
+      </StyledLink>
     </BodySignin>
   );
 }

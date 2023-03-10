@@ -8,8 +8,7 @@ export const TrendingBoxContainer = styled.div`
   border-radius: 16px;
   margin-top: 232px;
   margin-right: 150px;
-
-`
+`;
 
 export const HeaderTrending = styled.div`
   width: 100%;
@@ -19,12 +18,12 @@ export const HeaderTrending = styled.div`
   background-color: #171717;
   display: flex;
   align-items: center;
-  h1{
+  h1 {
     font-size: 27px;
     font-weight: 700;
     margin-left: 16px;
   }
-`
+`;
 
 export const HashtagContainer = styled.div`
   width: 130px;
@@ -35,16 +34,15 @@ export const HashtagContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   background-color: #171717;
-  h1{
+  h1 {
     font-size: 19px;
-
   }
-`
+`;
 
 export const PostContainer = styled.div`
   height: 209px;
   width: 100%;
-  background-color: ${(props) => props.color};
+  background-color: white;
   margin-top: 43px;
   border-radius: 16px;
   padding-top: 16px;
@@ -76,8 +74,8 @@ export const WritePostContainer = styled.div`
         color: white;
       }
     }
-}
-input {
+  }
+  input {
     width: 100%;
     height: 30px;
     left: 501px;
@@ -86,39 +84,29 @@ input {
     border-radius: 5px;
     border-style: none;
     margin-top: 5px;
-}
-input:nth-of-type(2){
+  }
+  input:nth-of-type(2) {
     height: 66px;
-}
-`;
-export const UsersPosts = styled.div`
-  height: 100%;
-  width: 83%;
-  left: 502px;
-  top: 596px;
-  background-color: darkgrey;
-  padding-left: 18px;
-
+  }
 `;
 
 export const UserHeader = styled.div`
-display: flex;
-justify-content: space-between;
-div{
-  width: 42px;
   display: flex;
   justify-content: space-between;
-}
-`
+  div {
+    width: 42px;
+    display: flex;
+    justify-content: space-between;
+  }
+`;
 
 export const CommentContainer = styled.div`
-margin-top: 12px;
-`
+  margin-top: 12px;
+`;
 
 export const LinkContainer = styled.div`
-margin-top: 12px;
-
-`
+  margin-top: 12px;
+`;
 
 export const Container = styled.div`
   width: 42%;
@@ -126,8 +114,6 @@ export const Container = styled.div`
   margin-right: auto;
   margin-top: 150px;
 `;
-
-
 
 export const LikeContainer = styled.div`
   height: 30px;
@@ -137,20 +123,106 @@ export const LikeContainer = styled.div`
   align-items: center;
   margin-left: 22px;
   margin-top: 10px;
-  h1{
+  h1 {
     font-size: 11px;
     margin-top: 6px;
   }
-`
+`;
 
 export const HeartIcon = styled(AiOutlineHeart)`
-  color: #FFFFFF;
+  color: #ffffff;
   scale: 2;
-`
-
+`;
 
 export const ContainerFeed = styled.div`
   display: flex;
   justify-content: space-between;
-  
-`
+`;
+
+//urldata styled
+
+export const UserPostContainertwo = styled.div`
+  height: 280px;
+  width: 100%;
+  background-color: #171717;
+  margin-top: 43px;
+  border-radius: 16px;
+  padding-top: 16px;
+  display: flex;
+  img {
+    margin-left: 16px;
+    width: 53px;
+    height: 53px;
+    border-radius: 53px;
+  }
+`;
+
+export const UsersPosts = styled.div`
+  padding-left: 16px;
+  height: 100%;
+  width: 84%;
+  background-color: #171717;
+  h3 {
+    color: white;
+    font-family: Lato;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 23px;
+    text-align: left;
+  }
+  h4 {
+    font-family: Lato;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: left;
+    color: #b7b7b7;
+  }
+`;
+
+export const UrlContainer = styled.div`
+  width: 100%;
+  height: 155px;
+  background-color: #171717;
+  border: 1px solid #4d4d4d;
+  border-radius: 11px;
+  display: flex;
+  img {
+    height: 152px;
+    width: 155px;
+    border-radius: 0px;
+    border-top-right-radius: 11px;
+    border-bottom-right-radius: 11px;
+  }
+`;
+
+export const ContainerTextUrl = styled.div`
+  padding: 20px;
+  width: 350px;
+  h1 {
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 19px;
+    text-align: left;
+    color: #cecece;
+    margin-bottom: 5px;
+  }
+  h2 {
+    font-family: Lato;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 13px;
+    text-align: left;
+    color: #9b9595;
+    margin-bottom: 10px;
+  }
+  h3 {
+    font-family: Lato;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 13px;
+    color: #cecece;
+    text-align: left;
+  }
+`;
