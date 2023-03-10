@@ -7,6 +7,9 @@ export const BodyHome = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  @media (max-width: 900px) {
+    height: 175px;
+  }
   h1 {
     padding-left: 15%;
     font-family: "Passion One", cursive;
@@ -16,6 +19,15 @@ export const BodyHome = styled.div`
     letter-spacing: 0.05em;
     text-align: left;
     color: #ffffff;
+    @media (max-width: 900px) {
+      font-family: Passion One;
+      font-size: 76px;
+      font-weight: 700;
+      line-height: 84px;
+      letter-spacing: 0.05em;
+      text-align: center;
+      padding-left: 0;
+    }
   }
   h2 {
     padding-left: 15%;
@@ -27,5 +39,16 @@ export const BodyHome = styled.div`
     text-align: left;
     color: #ffffff;
     box-sizing: border-box;
+    @media (max-width: 1300px) {
+      width: 100%;
+    }
+    @media (max-width: 900px) {
+      padding-right: 15%;
+      font-family: Oswald;
+      font-size: 23px;
+      font-weight: 700;
+      line-height: 34px;
+      text-align: center;
+    }
   }
 `;
