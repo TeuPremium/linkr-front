@@ -13,6 +13,7 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { UserPostContainer } from "./postContainer";
+import UserPage from "../../pages/user/User";
 
 export default function (prop) {
   console.log(prop.delete);
@@ -98,17 +99,9 @@ export default function (prop) {
         </ContainerFeed>
       </>
     );
-  } else {
-    return (
-      <ContainerFeed>
-        <Container>
-          <h1>UserNamePlaceHolder</h1>
-
-          <UserPostContainer />
-        </Container>
-
-        <TrendingTags />
-      </ContainerFeed>
-    );
-  }
-}
+  } else{
+        return(
+          <UserPage />          
+        )
+    }
+    }

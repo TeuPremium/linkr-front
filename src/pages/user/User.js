@@ -1,11 +1,22 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { AiOutlineHeart } from "react-icons/ai";
 import Header from "../../components/header/header";
+import TrendingTags from "../../components/Feeds/trendingBox";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function UserPage() {
   const { id } = useParams();
+  const [userPostsArray, setUserPostsArray] = useState("");
+
   console.log(id);
+
+  useEffect(() => {
+    const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/${id}`);
+    promise.then((e) => setUserPostsArray(e.data));
+    promise.catch(console.log);
+  }, []);
 
   return (
     <>
@@ -13,66 +24,37 @@ export default function UserPage() {
 
       <UserFeedContainer>
         <TituloContainer>
-          <img src="https://imgs.search.brave.com/7KHxJqOc757ysQ-_b0Tcyzs67rTqJ4Bv5dKrE9P77Us/rs:fit:900:900:1/g:ce/aHR0cHM6Ly92aWdu/ZXR0ZS53aWtpYS5u/b2Nvb2tpZS5uZXQv/eW91dHViZS9pbWFn/ZXMvYi9iMy9HcmFu/ZGF5eS5qcGcvcmV2/aXNpb24vbGF0ZXN0/P2NiPTIwMTgwODAz/MDAyODU1" />
-          <h1>Fulano's Posts</h1>
+          <img src={userPostsArray[0].image} />
+          <h1>{userPostsArray[0].username}'s Posts</h1>
         </TituloContainer>
 
         <ContainerFeed>
           <Container>
-            <PostContainer color={"#171717"}>
-              <div>
-                <img src="https://imgs.search.brave.com/7KHxJqOc757ysQ-_b0Tcyzs67rTqJ4Bv5dKrE9P77Us/rs:fit:900:900:1/g:ce/aHR0cHM6Ly92aWdu/ZXR0ZS53aWtpYS5u/b2Nvb2tpZS5uZXQv/eW91dHViZS9pbWFn/ZXMvYi9iMy9HcmFu/ZGF5eS5qcGcvcmV2/aXNpb24vbGF0ZXN0/P2NiPTIwMTgwODAz/MDAyODU1" />
-                <LikeContainer>
-                  <HeartIcon />
-                  <h1>x likes</h1>
-                </LikeContainer>
-              </div>
-              <UsersPosts>
-                <h3>username</h3>
-                <h4>
-                  Muito maneiro esse tutorial de Material UI com React, deem uma
-                  olhada!
-                </h4>
-                Placeholder box
-              </UsersPosts>
-            </PostContainer>
-            <PostContainer color={"#171717"}>
-              <div>
-                <img src="https://imgs.search.brave.com/7KHxJqOc757ysQ-_b0Tcyzs67rTqJ4Bv5dKrE9P77Us/rs:fit:900:900:1/g:ce/aHR0cHM6Ly92aWdu/ZXR0ZS53aWtpYS5u/b2Nvb2tpZS5uZXQv/eW91dHViZS9pbWFn/ZXMvYi9iMy9HcmFu/ZGF5eS5qcGcvcmV2/aXNpb24vbGF0ZXN0/P2NiPTIwMTgwODAz/MDAyODU1" />
-                <LikeContainer>
-                  <HeartIcon />
-                  <h1>x likes</h1>
-                </LikeContainer>
-              </div>
-              <UsersPosts>
-                <h3>username</h3>
-                <h4>
-                  Muito maneiro esse tutorial de Material UI com React, deem uma
-                  olhada!
-                </h4>
-                Placeholder box
-              </UsersPosts>
-            </PostContainer>
+            {userPostsArray.map((e) => (
+              <PostContainer color={"#171717"}>
+                <div>
+                  <img src={e.image} />
+                  <LikeContainer>
+                    <HeartIcon />
+                    <h1>x likes</h1>
+                  </LikeContainer>
+                </div>
+                <UsersPosts>
+                  <h3>{e.username}</h3>
+                  <h4>{e.comment}</h4>
+                  <Link
+                    to={e.url}
+                    target="_blank"
+                    style={{ textDecoration: "none", color: "#CECECE" }}
+                  >
+                    {e.url}
+                  </Link>
+                </UsersPosts>
+              </PostContainer>
+            ))}
           </Container>
 
-          <TrendingBoxContainer>
-            <HeaderTrending>
-              <h1>trending</h1>
-            </HeaderTrending>
-
-            <HashtagContainer>
-              <h1># hashtag example</h1>
-              <h1># hashtag example</h1>
-              <h1># hashtag example</h1>
-              <h1># hashtag example</h1>
-              <h1># hashtag example</h1>
-              <h1># hashtag example</h1>
-              <h1># hashtag example</h1>
-              <h1># hashtag example</h1>
-              <h1># hashtag example</h1>
-              <h1># hashtag example</h1>
-            </HashtagContainer>
-          </TrendingBoxContainer>
+          <TrendingTags />
         </ContainerFeed>
       </UserFeedContainer>
     </>
