@@ -4,6 +4,7 @@ import PencilIcon from "../../assets/styles/pencilIcon";
 import TrashIcon from "../../assets/styles/trashIcon";
 import { PostContainer, LikeContainer, HeartIcon, UsersPosts, UserHeader, LinkContainer, CommentContainer } from "./styles";
 import { useForm } from "react-hook-form";
+import styled from "styled-components";
 
 export function UserPostContainer(prop){
     const [edit, setEdit] = useState(false)
@@ -24,6 +25,8 @@ export function UserPostContainer(prop){
     
    
     return(
+      <>
+     
     <PostContainer color={"#171717"}>
 
       <div>
@@ -59,6 +62,8 @@ export function UserPostContainer(prop){
 
       </UsersPosts>
     </PostContainer>
+    </>
   )
 }
+
 
