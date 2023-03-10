@@ -22,7 +22,7 @@ export default function TrendingTags(prop) {
 
     return (
         <>
-            <TrendingBoxContainer>
+            <TrendingBoxContainer data-test="trending">
 
 
                 <HeaderTrending>
@@ -33,10 +33,10 @@ export default function TrendingTags(prop) {
                     {rank ? (
                         rank.map((r) => (
                             <Link to={`/hashtag/${r.hashtagName}`} style={{ textDecoration: 'none' }}>
-                                <h1># {r.hashtagName}</h1>
+                                <h1 data-test="hashtag"># {r.hashtagName}</h1>
                             </Link>
                         ))
-                    ) : (
+                        ) : (
                         <h1>Loading...</h1>
                     )}
                 </HashtagContainer>

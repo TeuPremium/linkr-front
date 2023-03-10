@@ -26,11 +26,9 @@ export default function Hashtags() {
 
       <ContainerFeed>
         <Container>
-          <h1># {hashtag}</h1>
+          <h1 data-test="hashtag-title"># {hashtag}</h1>
 
-          <UserPostContainer />
-          <UserPostContainer />
-          <UserPostContainer />
+          
         </Container>
 
         <TrendingTags />

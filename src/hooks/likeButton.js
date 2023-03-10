@@ -18,7 +18,7 @@ export function LikeButton() {
   const heartIcon = filled ? <FaHeart /> : <FaRegHeart />
 
   return (
-    <HeartIcon filled={filled} onClick={handleLikeClick}>
+    <HeartIcon data-test="like-btn" filled={filled} onClick={handleLikeClick}>
       {heartIcon}
     </HeartIcon>
   )
