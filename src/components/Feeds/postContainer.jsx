@@ -6,6 +6,7 @@ import { PostContainer, LikeContainer, HeartIcon, UsersPosts, UserHeader, LinkCo
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import axios from "axios";
+import { LikeButton } from "../../hooks/likeButton";
 
 export function UserPostContainer(prop){
     const [edit, setEdit] = useState(false)
@@ -62,8 +63,7 @@ export function UserPostContainer(prop){
       <div>
         <img src={prop.image} />
         <LikeContainer>
-          <HeartIcon/>
-          <h1>x likes</h1>
+          <LikeButton/>
         </LikeContainer>
       </div>
 

@@ -1,9 +1,8 @@
-import React, { useState } from "react";
 import { Container } from "./styled";
 
-export default function ArrowDown() {
+export default function ArrowDown({ direction }) {
   return (
-    <Container>
+    <Container direction={direction}>
       <svg
         width="23"
         height="17"
