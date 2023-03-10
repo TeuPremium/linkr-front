@@ -5,6 +5,7 @@ import { ContainerFeed, Container, WritePostContainer, PostContainer, LikeContai
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { UserPostContainer } from "./postContainer";
+import UserPage from "../../pages/user/User";
 
 
 
@@ -24,11 +25,10 @@ export default function(prop){
       
     }
     useEffect( ()=>{
-      const promise = axios.get(`${url}`)
+      const promise = axios.get(`${process.env.REACT_APP_API_URL}/posts`)
       promise.then((e) => setPostArray(e.data))
       promise.catch(console.log)
     } ,[])    
-    
     
     const timeline = prop.timeline
     
@@ -80,19 +80,7 @@ export default function(prop){
 
     else{
         return(
-          <ContainerFeed>
-
-            <Container>
-
-              <h1>UserNamePlaceHolder</h1>
-
-              <UserPostContainer/>
-
-            </Container>
-
-           <TrendingTags/>
-   
-         </ContainerFeed>
+          <UserPage />          
         )
     }
     }
