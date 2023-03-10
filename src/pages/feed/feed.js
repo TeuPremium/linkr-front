@@ -6,15 +6,18 @@ import { useState } from "react";
 export default function Feed(prop) {
   tokenIsValid();
 
-  const [comment, setComment] = useState(prop.comment) 
-  const [deleteComment, setDeleteComment] = useState(false)
+  const [comment, setComment] = useState(prop.comment);
+  const [deleteComment, setDeleteComment] = useState(false);
 
   return (
     <>
-      {/* colocar imagem por prop no header */}
-   
+      {/* colocar imagem por prop no header (é melhor fazer por context) */}
+
       <Header />
-      <FeedContainer timeline={prop.timeline} delete={deleteComment =>setDeleteComment(deleteComment)}/>
+      <FeedContainer
+        timeline={prop.timeline}
+        delete={(deleteComment) => setDeleteComment(deleteComment)}
+      />
     </>
   );
 }
