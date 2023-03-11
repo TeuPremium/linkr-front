@@ -16,18 +16,21 @@ import { UserPostContainer } from "./postContainer";
 import UserPage from "../../pages/user/User";
 
 export default function (prop) {
-  console.log(prop.delete);
+  
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const url = `${process.env.REACT_APP_API_URL}/posts`;
-  console.log(localStorage.userId);
+  console.log(localStorage.image);
   const [postArray, setPostArray] = useState("");
 
-  const { auth, userId } = localStorage;
-  console.log(auth);
+  const { userId, image } = localStorage;
+
+
+  const userImage = image.replace('"', '')
+  console.log(userImage)
 
   async function onSubmit(data) {
     data.userId = userId;
@@ -50,7 +53,6 @@ export default function (prop) {
   const timeline = prop.timeline;
 
   if (timeline && postArray) {
-    console.log(postArray);
 
     return (
       <>
@@ -60,7 +62,7 @@ export default function (prop) {
 
             <PostContainer>
               <div>
-                <img src="https://imgs.search.brave.com/7KHxJqOc757ysQ-_b0Tcyzs67rTqJ4Bv5dKrE9P77Us/rs:fit:900:900:1/g:ce/aHR0cHM6Ly92aWdu/ZXR0ZS53aWtpYS5u/b2Nvb2tpZS5uZXQv/eW91dHViZS9pbWFn/ZXMvYi9iMy9HcmFu/ZGF5eS5qcGcvcmV2/aXNpb24vbGF0ZXN0/P2NiPTIwMTgwODAz/MDAyODU1" />
+                <img src={userImage} />
               </div>
 
               <WritePostContainer>
@@ -99,9 +101,14 @@ export default function (prop) {
         </ContainerFeed>
       </>
     );
-  } else{
+  } else if(!timeline && postArray){
         return(
           <UserPage />          
         )
+    }
+    else{
+      return(
+        <img src="https://imgs.search.brave.com/WXOcrQtv7vqv7kBbWX1VWRCCfW6u9gXYv6eKryV7_P4/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93d3cu/d3BmYXN0ZXIub3Jn/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDEz/LzA2L2xvYWRpbmct/Z2lmLmdpZg.gif"/>
+      )
     }
     }
