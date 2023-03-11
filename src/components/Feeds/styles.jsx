@@ -187,6 +187,7 @@ export const UrlContainer = styled.div`
   border: 1px solid #4d4d4d;
   border-radius: 11px;
   display: flex;
+  justify-content: space-between;
   img {
     height: 152px;
     width: 155px;
@@ -198,7 +199,7 @@ export const UrlContainer = styled.div`
 
 export const ContainerTextUrl = styled.div`
   padding: 20px;
-  width: 350px;
+  width: 90%;
   h1 {
     font-family: Lato;
     font-size: 16px;
