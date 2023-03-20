@@ -200,6 +200,7 @@ export const UrlContainer = styled.div`
 export const ContainerTextUrl = styled.div`
   padding: 20px;
   width: 90%;
+  overflow: hidden;
   h1 {
     font-family: Lato;
     font-size: 16px;

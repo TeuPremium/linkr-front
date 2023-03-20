@@ -50,7 +50,6 @@ export function UserPostContainer(prop) {
     setDeletePrompt(false);
   }
 
-  console.log(watch("comment"));
 
   return (
     <>
