@@ -17,26 +17,32 @@ import UserPage from "../../pages/user/User";
 
 export default function (prop) {
   
+
+  
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
   const url = `${process.env.REACT_APP_API_URL}/posts`;
-  console.log(localStorage.image);
   const [postArray, setPostArray] = useState("");
+  const [disable, setDisable] = useState(false)
+  const [color, setColor] = useState("rgb(24, 119, 242)")
 
   const { userId, image } = localStorage;
 
 
   const userImage = image.replace('"', '')
-  console.log(userImage)
+  
 
   async function onSubmit(data) {
     data.userId = userId;
+    setColor("grey")
+    setDisable(true)
     const createPost = await axios.post(url, data).catch((error) => {
       alert("there was en error publishing your link");
-    });
+    }).then(()=>{setColor("rgb(24, 119, 242)"); setDisable(false)});
+    
     console.log(data);
   }
 
@@ -80,7 +86,7 @@ export default function (prop) {
                   />
                   {errors.postCommentary && <span>This field is required</span>}
                   <div>
-                    <input type="submit" />
+                    <input type="submit" style={{background:color}} disabled={disable}/>
                   </div>
                 </form>
               </WritePostContainer>
