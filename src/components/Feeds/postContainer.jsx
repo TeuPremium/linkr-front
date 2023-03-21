@@ -29,6 +29,7 @@ export function UserPostContainer(prop) {
   } = useForm();
   const url = `${process.env.REACT_APP_API_URL}/posts`;
 
+
   const onSubmit = (data) => {
     setEdit(false);
     setComment(data.comment);
@@ -114,7 +115,7 @@ export function UserPostContainer(prop) {
               target="_blank"
               style={{ textDecoration: "none", color: "#CECECE" }}
             >
-              <UrlData url={prop.url} />
+              <UrlData urlData={prop.urlData} url={prop.url}/>
             </Link>
           </LinkContainer>
         </UsersPosts>

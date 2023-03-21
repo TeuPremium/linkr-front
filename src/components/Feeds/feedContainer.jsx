@@ -15,9 +15,9 @@ import { useEffect, useState } from "react";
 import { UserPostContainer } from "./postContainer";
 import UserPage from "../../pages/user/User";
 
-export default function (prop) {
-  
 
+
+export default function (prop) {
   
   const {
     register,
@@ -57,6 +57,8 @@ export default function (prop) {
   }, []);
 
   const timeline = prop.timeline;
+  
+  
 
   if (timeline && postArray) {
 
@@ -99,6 +101,7 @@ export default function (prop) {
                 url={e.url}
                 comment={e.comment}
                 id={e.postId}
+                urlData={e.urlData}
               />
             ))}
           </Container>
