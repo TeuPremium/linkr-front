@@ -102,6 +102,7 @@ export const UserHeader = styled.div`
 
 export const CommentContainer = styled.div`
   margin-top: 12px;
+  height: 40px;
 `;
 
 export const LinkContainer = styled.div`

@@ -1,7 +1,6 @@
 import { ContainerTextUrl, UrlContainer } from "./styles";
 
 export default function UrlData(prop) {
-  console.log(prop.url)
   
   return (
     <UrlContainer>
@@ -12,7 +11,7 @@ export default function UrlData(prop) {
         </h2>
         <h3>{prop.url}</h3>
       </ContainerTextUrl>
-      <img src={prop.urlData.image} style={{objectFit:"cover"}}/>
+      {prop.urlData.image ? <img src={prop.urlData.image} style={{objectFit:"cover"}}/> : <img src="no-image.png"/>}
     </UrlContainer>
   );
 }
