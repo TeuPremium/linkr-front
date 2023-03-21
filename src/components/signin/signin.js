@@ -22,6 +22,7 @@ export default function Signin({}) {
       console.log(promisse.data);
       if (promisse.data) {
         localStorage.setItem("token", JSON.stringify(promisse.data.token));
+        localStorage.setItem("image", JSON.stringify(promisse.data.image));
         localStorage.setItem("email", JSON.stringify(promisse.data.email));
         localStorage.setItem("userId", JSON.stringify(promisse.data.userId));
         navigate("/timeline");

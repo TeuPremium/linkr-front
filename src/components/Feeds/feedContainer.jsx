@@ -31,8 +31,8 @@ export default function (prop) {
 
   const { userId, image } = localStorage;
 
-
   const userImage = image.replace('"', '')
+  console.log(userImage)
   
 
   async function onSubmit(data) {
