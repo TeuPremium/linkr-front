@@ -1,17 +1,18 @@
 import { ContainerTextUrl, UrlContainer } from "./styles";
 
-export default function UrlData({ url }) {
+export default function UrlData(prop) {
+  console.log(prop.url)
+  
   return (
     <UrlContainer>
       <ContainerTextUrl>
-        <h1>Como aplicar o Material UI em um projeto React</h1>
+        <h1>{prop.urlData.title ? prop.urlData.title : "undefined"}</h1>
         <h2>
-          Hey! I have moved this tutorial to my personal blog. Same content, new
-          location. Sorry about making you click through to another page.
+        {prop.urlData.description ? prop.urlData.description : "undefined"}
         </h2>
-        <h3>{url}</h3>
+        <h3>{prop.url}</h3>
       </ContainerTextUrl>
-      <img src="https://reqres.in/img/faces/1-image.jpg" />
+      <img src={prop.urlData.image} style={{objectFit:"cover"}}/>
     </UrlContainer>
   );
 }
