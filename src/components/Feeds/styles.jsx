@@ -116,6 +116,7 @@ export const Container = styled.div`
   margin-top: 150px;
   p {
     font-size: 50px;
+    color: white;
   }
 `;
 
@@ -141,6 +142,7 @@ export const HeartIcon = styled(AiOutlineHeart)`
 export const ContainerFeed = styled.div`
   display: flex;
   justify-content: space-between;
+  padding-bottom: 40px;
 `;
 
 //urldata styled

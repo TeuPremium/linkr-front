@@ -55,7 +55,10 @@ export default function (prop) {
 
   useEffect(() => {
     const promise = axios.get(`${url}/${numPosts}`);
-    promise.then((e) => setPostArray((prevArrey) => prevArrey.concat(e.data)));
+    promise.then(
+      (e) => setPostArray((prevArrey) => prevArrey.concat(e.data)),
+      setLoading(false)
+    );
     promise.catch((error) =>
       alert(
         "An error occured while trying to fetch the posts, please refresh the page"
@@ -66,7 +69,7 @@ export default function (prop) {
   window.addEventListener("scroll", () => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
     if (
-      scrollTop + clientHeight >= scrollHeight - 5 &&
+      scrollTop + clientHeight >= scrollHeight - 10 &&
       postArray.length === numPosts
     ) {
       setLoading(true);
