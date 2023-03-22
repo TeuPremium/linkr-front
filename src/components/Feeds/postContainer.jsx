@@ -28,6 +28,7 @@ export function UserPostContainer(prop) {
     watch,
   } = useForm();
   const url = `${process.env.REACT_APP_API_URL}/posts`;
+  const isShown = prop.isShown;
 
 
   const onSubmit = (data) => {
@@ -85,6 +86,8 @@ export function UserPostContainer(prop) {
         <UsersPosts>
           <UserHeader>
             <h3>{prop.username}</h3>
+            
+            { isShown ? ( 
             <div>
               <div onClick={() => setDeletePrompt(true)}>
                 <TrashIcon />
@@ -93,6 +96,11 @@ export function UserPostContainer(prop) {
                 <PencilIcon />
               </div>
             </div>
+            ) : (
+            <div></div>
+            )
+            }
+            
           </UserHeader>
 
           <CommentContainer>
