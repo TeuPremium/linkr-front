@@ -114,6 +114,9 @@ export const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-top: 150px;
+  p {
+    font-size: 50px;
+  }
 `;
 
 export const LikeContainer = styled.div`

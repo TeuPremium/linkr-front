@@ -24,7 +24,7 @@ export default function (prop) {
     formState: { errors },
   } = useForm();
   const url = `${process.env.REACT_APP_API_URL}/posts`;
-  const [postArray, setPostArray] = useState("");
+  const [postArray, setPostArray] = useState([]);
   const [disable, setDisable] = useState(false);
   const [color, setColor] = useState("rgb(24, 119, 242)");
   const [numPosts, setNumPosts] = useState(10); //para controlar numero de postagens que vai aparecer
@@ -39,7 +39,8 @@ export default function (prop) {
     data.userId = userId;
     setColor("grey");
     setDisable(true);
-    const createPost = await axios
+
+    await axios
       .post(url, data)
       .catch((error) => {
         alert("there was en error publishing your link");
@@ -53,20 +54,20 @@ export default function (prop) {
   }
 
   useEffect(() => {
-    const promise = axios.get(`${url}`);
-    promise.then((e) => setPostArray(e.data));
+    const promise = axios.get(`${url}/${numPosts}`);
+    promise.then((e) => setPostArray((prevArrey) => prevArrey.concat(e.data)));
     promise.catch((error) =>
       alert(
         "An error occured while trying to fetch the posts, please refresh the page"
       )
     );
-  }, []);
+  }, [numPosts]);
 
   window.addEventListener("scroll", () => {
     const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
     if (
       scrollTop + clientHeight >= scrollHeight - 5 &&
-      postArray.length > numPosts
+      postArray.length === numPosts
     ) {
       setLoading(true);
       setNumPosts(numPosts + 10);
@@ -75,7 +76,7 @@ export default function (prop) {
 
   const timeline = prop.timeline;
 
-  if (timeline && postArray) {
+  if (timeline && postArray.length !== 0) {
     return (
       <>
         <ContainerFeed>
@@ -112,7 +113,7 @@ export default function (prop) {
               </WritePostContainer>
             </PostContainer>
 
-            {postArray.slice(0, numPosts).map((e) => (
+            {postArray.map((e) => (
               <UserPostContainer
                 username={e.username}
                 image={e.image}
@@ -129,7 +130,7 @@ export default function (prop) {
         </ContainerFeed>
       </>
     );
-  } else if (!timeline && postArray) {
+  } else if (!timeline && postArray.length !== 0) {
     return <UserPage />;
   } else {
     return (
