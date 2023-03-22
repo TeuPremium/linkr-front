@@ -114,6 +114,10 @@ export const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-top: 150px;
+  p {
+    font-size: 50px;
+    color: white;
+  }
 `;
 
 export const LikeContainer = styled.div`
@@ -138,6 +142,7 @@ export const HeartIcon = styled(AiOutlineHeart)`
 export const ContainerFeed = styled.div`
   display: flex;
   justify-content: space-between;
+  padding-bottom: 40px;
 `;
 
 //urldata styled

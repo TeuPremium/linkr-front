@@ -14,11 +14,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { UserPostContainer } from "./postContainer";
 import UserPage from "../../pages/user/User";
-
-
+import { buildTimeValue } from "@testing-library/user-event/dist/utils";
+import InfiniteScroll from "react-infinite-scroller";
 
 export default function (prop) {
-  
   const {
     register,
     handleSubmit,
@@ -27,44 +26,63 @@ export default function (prop) {
   const url = `${process.env.REACT_APP_API_URL}/posts`;
   // const url = `http://localhost:5000/posts`;
 
-  const [postArray, setPostArray] = useState("");
-  const [disable, setDisable] = useState(false)
-  const [color, setColor] = useState("rgb(24, 119, 242)")
+  const [postArray, setPostArray] = useState([]);
+  const [disable, setDisable] = useState(false);
+  const [color, setColor] = useState("rgb(24, 119, 242)");
+  const [numPosts, setNumPosts] = useState(10); //para controlar numero de postagens que vai aparecer
+  const [loading, setLoading] = useState(false); //para aparecer loading quando carregar a pagina
   const isShown = true;
-
+  
   const { userId, image } = localStorage;
 
-  const userImage = image.replace('"', '')
-  console.log(userImage)
-  
+  const userImage = image.replace('"', "");
+  console.log(userImage);
 
   async function onSubmit(data) {
     data.userId = userId;
-    setColor("grey")
-    setDisable(true)
-    const createPost = await axios.post(url, data).catch((error) => {
-      alert("there was en error publishing your link");
-    }).then(()=>{setColor("rgb(24, 119, 242)"); setDisable(false)});
-    
+    setColor("grey");
+    setDisable(true);
+
+    await axios
+      .post(url, data)
+      .catch((error) => {
+        alert("there was en error publishing your link");
+      })
+      .then(() => {
+        setColor("rgb(24, 119, 242)");
+        setDisable(false);
+      });
+
     console.log(data);
   }
 
   useEffect(() => {
-    const promise = axios.get(`${url}`);
-    promise.then((e) => setPostArray(e.data));
+    const promise = axios.get(`${url}/${numPosts}`);
+    promise.then(
+      (e) => setPostArray((prevArrey) => prevArrey.concat(e.data)),
+      setLoading(false)
+    );
     promise.catch((error) =>
       alert(
         "An error occured while trying to fetch the posts, please refresh the page"
       )
     );
-  }, []);
+  }, [numPosts]);
+
+  window.addEventListener("scroll", () => {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    if (
+      scrollTop + clientHeight >= scrollHeight - 10 &&
+      postArray.length === numPosts
+    ) {
+      setLoading(true);
+      setNumPosts(numPosts + 10);
+    }
+  });
 
   const timeline = prop.timeline;
-  
-  
 
-  if (timeline && postArray) {
-
+  if (timeline && postArray.length !== 0) {
     return (
       <>
         <ContainerFeed>
@@ -91,7 +109,11 @@ export default function (prop) {
                   />
                   {errors.postCommentary && <span>This field is required</span>}
                   <div>
-                    <input type="submit" style={{background:color}} disabled={disable}/>
+                    <input
+                      type="submit"
+                      style={{ background: color }}
+                      disabled={disable}
+                    />
                   </div>
                 </form>
               </WritePostContainer>
@@ -108,20 +130,18 @@ export default function (prop) {
                 isShown={isShown}
               />
             ))}
+            {loading && <p>Loading...</p>}
           </Container>
 
           <TrendingTags />
         </ContainerFeed>
       </>
     );
-  } else if(!timeline && postArray){
-        return(
-          <UserPage />          
-        )
-    }
-    else{
-      return(
-        <img src="https://imgs.search.brave.com/WXOcrQtv7vqv7kBbWX1VWRCCfW6u9gXYv6eKryV7_P4/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93d3cu/d3BmYXN0ZXIub3Jn/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDEz/LzA2L2xvYWRpbmct/Z2lmLmdpZg.gif"/>
-      )
-    }
-    }
+  } else if (!timeline && postArray.length !== 0) {
+    return <UserPage />;
+  } else {
+    return (
+      <img src="https://imgs.search.brave.com/WXOcrQtv7vqv7kBbWX1VWRCCfW6u9gXYv6eKryV7_P4/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93d3cu/d3BmYXN0ZXIub3Jn/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDEz/LzA2L2xvYWRpbmct/Z2lmLmdpZg.gif" />
+    );
+  }
+}
