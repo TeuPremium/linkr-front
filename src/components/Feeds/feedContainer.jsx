@@ -15,6 +15,7 @@ import { useEffect, useState } from "react";
 import { UserPostContainer } from "./postContainer";
 import UserPage from "../../pages/user/User";
 import { buildTimeValue } from "@testing-library/user-event/dist/utils";
+import InfiniteScroll from "react-infinite-scroller";
 
 export default function (prop) {
   const {
