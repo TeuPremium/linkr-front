@@ -14,11 +14,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { UserPostContainer } from "./postContainer";
 import UserPage from "../../pages/user/User";
-
-
+import { buildTimeValue } from "@testing-library/user-event/dist/utils";
 
 export default function (prop) {
-  
   const {
     register,
     handleSubmit,
@@ -26,23 +24,29 @@ export default function (prop) {
   } = useForm();
   const url = `${process.env.REACT_APP_API_URL}/posts`;
   const [postArray, setPostArray] = useState("");
-  const [disable, setDisable] = useState(false)
-  const [color, setColor] = useState("rgb(24, 119, 242)")
+  const [disable, setDisable] = useState(false);
+  const [color, setColor] = useState("rgb(24, 119, 242)");
+  const [numPosts, setNumPosts] = useState(10); //para controlar numero de postagens que vai aparecer
 
   const { userId, image } = localStorage;
 
-  const userImage = image.replace('"', '')
-  console.log(userImage)
-  
+  const userImage = image.replace('"', "");
+  console.log(userImage);
 
   async function onSubmit(data) {
     data.userId = userId;
-    setColor("grey")
-    setDisable(true)
-    const createPost = await axios.post(url, data).catch((error) => {
-      alert("there was en error publishing your link");
-    }).then(()=>{setColor("rgb(24, 119, 242)"); setDisable(false)});
-    
+    setColor("grey");
+    setDisable(true);
+    const createPost = await axios
+      .post(url, data)
+      .catch((error) => {
+        alert("there was en error publishing your link");
+      })
+      .then(() => {
+        setColor("rgb(24, 119, 242)");
+        setDisable(false);
+      });
+
     console.log(data);
   }
 
@@ -56,12 +60,19 @@ export default function (prop) {
     );
   }, []);
 
+  window.addEventListener("scroll", () => {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    if (
+      scrollTop + clientHeight >= scrollHeight - 5 &&
+      postArray.length > numPosts
+    ) {
+      setNumPosts(numPosts + 10);
+    }
+  });
+
   const timeline = prop.timeline;
-  
-  
 
   if (timeline && postArray) {
-
     return (
       <>
         <ContainerFeed>
@@ -88,13 +99,17 @@ export default function (prop) {
                   />
                   {errors.postCommentary && <span>This field is required</span>}
                   <div>
-                    <input type="submit" style={{background:color}} disabled={disable}/>
+                    <input
+                      type="submit"
+                      style={{ background: color }}
+                      disabled={disable}
+                    />
                   </div>
                 </form>
               </WritePostContainer>
             </PostContainer>
 
-            {postArray.map((e) => (
+            {postArray.slice(0, numPosts).map((e) => (
               <UserPostContainer
                 username={e.username}
                 image={e.image}
@@ -110,14 +125,11 @@ export default function (prop) {
         </ContainerFeed>
       </>
     );
-  } else if(!timeline && postArray){
-        return(
-          <UserPage />          
-        )
-    }
-    else{
-      return(
-        <img src="https://imgs.search.brave.com/WXOcrQtv7vqv7kBbWX1VWRCCfW6u9gXYv6eKryV7_P4/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93d3cu/d3BmYXN0ZXIub3Jn/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDEz/LzA2L2xvYWRpbmct/Z2lmLmdpZg.gif"/>
-      )
-    }
-    }
+  } else if (!timeline && postArray) {
+    return <UserPage />;
+  } else {
+    return (
+      <img src="https://imgs.search.brave.com/WXOcrQtv7vqv7kBbWX1VWRCCfW6u9gXYv6eKryV7_P4/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93d3cu/d3BmYXN0ZXIub3Jn/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDEz/LzA2L2xvYWRpbmct/Z2lmLmdpZg.gif" />
+    );
+  }
+}
