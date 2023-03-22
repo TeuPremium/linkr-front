@@ -27,6 +27,7 @@ export default function (prop) {
   const [disable, setDisable] = useState(false);
   const [color, setColor] = useState("rgb(24, 119, 242)");
   const [numPosts, setNumPosts] = useState(10); //para controlar numero de postagens que vai aparecer
+  const [loading, setLoading] = useState(false); //para aparecer loading quando carregar a pagina
 
   const { userId, image } = localStorage;
 
@@ -66,6 +67,7 @@ export default function (prop) {
       scrollTop + clientHeight >= scrollHeight - 5 &&
       postArray.length > numPosts
     ) {
+      setLoading(true);
       setNumPosts(numPosts + 10);
     }
   });
@@ -119,6 +121,7 @@ export default function (prop) {
                 urlData={e.urlData}
               />
             ))}
+            {loading && <p>Loading...</p>}
           </Container>
 
           <TrendingTags />
