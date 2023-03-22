@@ -31,7 +31,8 @@ export default function (prop) {
 
   const { userId, image } = localStorage;
 
-  const userImage = image.replace('"', '')
+  let userImage = image.replace('"', '')
+  
   console.log(userImage)
   
 

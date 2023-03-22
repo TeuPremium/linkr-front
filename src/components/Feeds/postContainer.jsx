@@ -76,7 +76,7 @@ export function UserPostContainer(prop) {
 
       <UserPostContainertwo>
         <div>
-          <img src={prop.image} />
+          <img src={prop.image} style={{objectFit:"cover"}}/>
           <LikeContainer>
             <LikeButton />
           </LikeContainer>
