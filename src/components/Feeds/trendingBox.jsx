@@ -8,7 +8,6 @@ export default function TrendingTags(prop) {
 
 
     const url = `${process.env.REACT_APP_API_URL}/rank`
-    // const url = `http://localhost:5000/rank`
 
     const [rank, setRank] = useState()
 
