@@ -25,12 +25,14 @@ export default function (prop) {
     formState: { errors },
   } = useForm();
   const url = `${process.env.REACT_APP_API_URL}/posts`;
+  // const url = `http://localhost:5000/posts`;
+
   const [postArray, setPostArray] = useState("");
   const [disable, setDisable] = useState(false)
   const [color, setColor] = useState("rgb(24, 119, 242)")
+  const isShown = true;
 
   const { userId, image } = localStorage;
-
 
   const userImage = image.replace('"', '')
   
@@ -70,7 +72,7 @@ export default function (prop) {
 
             <PostContainer>
               <div>
-                <img src={userImage} />
+                <img src={image} />
               </div>
 
               <WritePostContainer>
@@ -102,6 +104,7 @@ export default function (prop) {
                 comment={e.comment}
                 id={e.postId}
                 urlData={e.urlData}
+                isShown={isShown}
               />
             ))}
           </Container>

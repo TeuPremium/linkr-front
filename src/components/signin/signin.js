@@ -15,6 +15,7 @@ export default function Signin({}) {
     if (!password) return alert("Please fill in the password field.");
 
     const url = `${process.env.REACT_APP_API_URL}/signin`;
+    // const url = `http://localhost:5000/signin`;
     const data = { email, password };
 
     try {
@@ -22,6 +23,7 @@ export default function Signin({}) {
       console.log(promisse.data);
       if (promisse.data) {
         localStorage.setItem("token", JSON.stringify(promisse.data.token));
+        localStorage.setItem("image", JSON.stringify(promisse.data.image));
         localStorage.setItem("email", JSON.stringify(promisse.data.email));
         localStorage.setItem("userId", JSON.stringify(promisse.data.userId));
         navigate("/timeline");
