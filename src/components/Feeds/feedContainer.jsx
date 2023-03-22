@@ -24,7 +24,6 @@ export default function (prop) {
     formState: { errors },
   } = useForm();
   const url = `${process.env.REACT_APP_API_URL}/posts`;
-  // const url = `http://localhost:5000/posts`;
 
   const [postArray, setPostArray] = useState([]);
   const [disable, setDisable] = useState(false);
@@ -91,7 +90,7 @@ export default function (prop) {
 
             <PostContainer>
               <div>
-                <img src={image} />
+                <img src={userImage} />
               </div>
 
               <WritePostContainer>
