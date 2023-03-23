@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import TrendingTags from "./trendingBox";
 import {
@@ -6,16 +5,11 @@ import {
   Container,
   WritePostContainer,
   PostContainer,
-  LikeContainer,
-  HeartIcon,
-  UsersPosts,
 } from "./styles";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { UserPostContainer } from "./postContainer";
-import UserPage from "../../pages/user/User";
-import { buildTimeValue } from "@testing-library/user-event/dist/utils";
-import InfiniteScroll from "react-infinite-scroller";
+import UserPage from "../../pages/user/user";
 
 export default function (prop) {
   const {
@@ -31,7 +25,7 @@ export default function (prop) {
   const [numPosts, setNumPosts] = useState(10); //para controlar numero de postagens que vai aparecer
   const [loading, setLoading] = useState(false); //para aparecer loading quando carregar a pagina
   const isShown = true;
-  
+
   const { userId, image } = localStorage;
 
   const userImage = image.replace('"', "");
