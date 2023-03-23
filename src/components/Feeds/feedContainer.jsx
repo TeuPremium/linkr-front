@@ -14,8 +14,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { UserPostContainer } from "./postContainer";
 import UserPage from "../../pages/user/User";
-
-
+import { buildTimeValue } from "@testing-library/user-event/dist/utils";
+import InfiniteScroll from "react-infinite-scroller";
 
 export default function(prop){
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -33,11 +33,10 @@ export default function(prop){
       
     }
     useEffect( ()=>{
-      const promise = axios.get(`${url}`)
+      const promise = axios.get(`${process.env.REACT_APP_API_URL}/posts`)
       promise.then((e) => setPostArray(e.data))
       promise.catch(console.log)
     } ,[])    
-    
     
     const timeline = prop.timeline
     
@@ -53,7 +52,7 @@ export default function(prop){
 
             <PostContainer>
               <div>
-                <img src="https://imgs.search.brave.com/7KHxJqOc757ysQ-_b0Tcyzs67rTqJ4Bv5dKrE9P77Us/rs:fit:900:900:1/g:ce/aHR0cHM6Ly92aWdu/ZXR0ZS53aWtpYS5u/b2Nvb2tpZS5uZXQv/eW91dHViZS9pbWFn/ZXMvYi9iMy9HcmFu/ZGF5eS5qcGcvcmV2/aXNpb24vbGF0ZXN0/P2NiPTIwMTgwODAz/MDAyODU1" />
+                <img src={image} />
               </div>
 
               <WritePostContainer>
@@ -71,7 +70,11 @@ export default function(prop){
                   />
                   {errors.postCommentary && <span>This field is required</span>}
                   <div>
-                    <input type="submit" />
+                    <input
+                      type="submit"
+                      style={{ background: color }}
+                      disabled={disable}
+                    />
                   </div>
                 </form>
               </WritePostContainer>
@@ -84,38 +87,28 @@ export default function(prop){
                 url={e.url}
                 comment={e.comment}
                 id={e.postId}
+                urlData={e.urlData}
+                isShown={isShown}
               />
             ))}
+            {loading && <p>Loading...</p>}
           </Container>
 
-        <TrendingTags/>
+          <TrendingTags />
+        </ContainerFeed>
+      </>
+    );
+  } else {
+    return (
+      <ContainerFeed>
+        <Container>
+          <h1>UserNamePlaceHolder</h1>
 
+          <UserPostContainer />
+        </Container>
+
+        <TrendingTags />
       </ContainerFeed>
-
-
-    </>
-  );
+    );
+  }
 }
-
-    else{
-        return(
-          <ContainerFeed>
-
-            <Container>
-
-              <h1>UserNamePlaceHolder</h1>
-
-              <UserPostContainer/>
-
-            </Container>
-
-           <TrendingTags/>
-   
-         </ContainerFeed>
-        )
-    }
-    }
-
-    
-
-

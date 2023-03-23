@@ -102,6 +102,7 @@ export const UserHeader = styled.div`
 
 export const CommentContainer = styled.div`
   margin-top: 12px;
+  height: 40px;
 `;
 
 export const LinkContainer = styled.div`
@@ -113,6 +114,10 @@ export const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
   margin-top: 150px;
+  p {
+    font-size: 50px;
+    color: white;
+  }
 `;
 
 export const LikeContainer = styled.div`
@@ -137,6 +142,7 @@ export const HeartIcon = styled(AiOutlineHeart)`
 export const ContainerFeed = styled.div`
   display: flex;
   justify-content: space-between;
+  padding-bottom: 40px;
 `;
 
 //urldata styled
@@ -187,6 +193,7 @@ export const UrlContainer = styled.div`
   border: 1px solid #4d4d4d;
   border-radius: 11px;
   display: flex;
+  justify-content: space-between;
   img {
     height: 152px;
     width: 155px;
@@ -198,7 +205,8 @@ export const UrlContainer = styled.div`
 
 export const ContainerTextUrl = styled.div`
   padding: 20px;
-  width: 350px;
+  width: 90%;
+  overflow: hidden;
   h1 {
     font-family: Lato;
     font-size: 16px;
