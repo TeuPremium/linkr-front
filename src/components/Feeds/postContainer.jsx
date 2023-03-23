@@ -17,6 +17,7 @@ import axios from "axios";
 import { LikeButton } from "../../hooks/likeButton";
 import UrlData from "./dataUrl";
 
+
 export function UserPostContainer(prop) {
   const [edit, setEdit] = useState(false);
   const [comment, setComment] = useState(prop.comment);
@@ -77,7 +78,7 @@ export function UserPostContainer(prop) {
 
       <UserPostContainertwo>
         <div>
-          <img src={prop.image} />
+          <img src={prop.image} style={{objectFit:"cover"}}/>
           <LikeContainer>
             <LikeButton />
           </LikeContainer>
