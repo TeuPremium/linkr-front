@@ -5,7 +5,6 @@ import TrashIcon from "../../assets/styles/trashIcon";
 import {
   UserPostContainertwo,
   LikeContainer,
-  HeartIcon,
   UsersPosts,
   UserHeader,
   LinkContainer,
@@ -13,7 +12,7 @@ import {
 } from "./styles";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import axios from "axios";
+
 import { LikeButton } from "../../hooks/likeButton";
 import UrlData from "./dataUrl";
 
@@ -30,7 +29,6 @@ export function UserPostContainer(prop) {
   } = useForm();
   const url = `${process.env.REACT_APP_API_URL}/posts`;
   const isShown = prop.isShown;
-
 
   const onSubmit = (data) => {
     setEdit(false);
@@ -52,7 +50,6 @@ export function UserPostContainer(prop) {
 
     setDeletePrompt(false);
   }
-
 
   return (
     <>
@@ -87,21 +84,19 @@ export function UserPostContainer(prop) {
         <UsersPosts>
           <UserHeader>
             <h3>{prop.username}</h3>
-            
-            { isShown ? ( 
-            <div>
-              <div onClick={() => setDeletePrompt(true)}>
-                <TrashIcon />
+
+            {isShown ? (
+              <div>
+                <div onClick={() => setDeletePrompt(true)}>
+                  <TrashIcon />
+                </div>
+                <div onClick={() => editChange(edit)}>
+                  <PencilIcon />
+                </div>
               </div>
-              <div onClick={() => editChange(edit)}>
-                <PencilIcon />
-              </div>
-            </div>
             ) : (
-            <div></div>
-            )
-            }
-            
+              <div></div>
+            )}
           </UserHeader>
 
           <CommentContainer>
@@ -124,7 +119,7 @@ export function UserPostContainer(prop) {
               target="_blank"
               style={{ textDecoration: "none", color: "#CECECE" }}
             >
-              <UrlData urlData={prop.urlData} url={prop.url}/>
+              <UrlData urlData={prop.urlData} url={prop.url} />
             </Link>
           </LinkContainer>
         </UsersPosts>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { AiOutlineHeart } from "react-icons/ai";
 
 export const TrendingBoxContainer = styled.div`
   height: 406px;
