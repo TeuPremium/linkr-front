@@ -28,32 +28,31 @@ export default function (prop) {
 
   const { userId, image } = localStorage;
 
-  let userImage = image.replace('"', '')
-  
+  let userImage = image.replace('"', "");
 
   async function onSubmit(data) {
     data.userId = userId;
     setColor("grey");
     setDisable(true);
-    setPosting(true)
+    setPosting(true);
     await axios
       .post(url, data)
       .catch((error) => {
         alert("there was en error publishing your link");
-        console.log(error)
-        setPosting(false)
+        console.log(error);
+        setPosting(false);
       })
       .then((e) => {
         setColor("rgb(24, 119, 242)");
         setDisable(false);
-        e.data.image = userImage
-        e.data.comment = data.comment
-        e.data.url = data.url
-        let array = [e.data].concat(postArray)
+        e.data.image = userImage;
+        e.data.comment = data.comment;
+        e.data.url = data.url;
+        let array = [e.data].concat(postArray);
         setPostArray(array);
-        setPosting(false)
+        setPosting(false);
       });
-    }
+  }
 
   useEffect(() => {
     const promise = axios.get(`${url}/${numPosts}`);
@@ -82,7 +81,6 @@ export default function (prop) {
   const timeline = prop.timeline;
 
   if (timeline && postArray.length !== 0) {
-   
     return (
       <>
         <ContainerFeed>
@@ -128,6 +126,7 @@ export default function (prop) {
                 id={e.postId}
                 urlData={e.urlData}
                 isShown={isShown}
+                userId={e.id}
               />
             ))}
             {loading && <p>Loading...</p>}
@@ -139,9 +138,7 @@ export default function (prop) {
     );
   } else if (!timeline && postArray.length !== 0) {
     return <UserPage />;
-  } 
-  else 
-  {
+  } else {
     return (
       <img src="https://imgs.search.brave.com/WXOcrQtv7vqv7kBbWX1VWRCCfW6u9gXYv6eKryV7_P4/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93d3cu/d3BmYXN0ZXIub3Jn/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDEz/LzA2L2xvYWRpbmct/Z2lmLmdpZg.gif" />
     );
