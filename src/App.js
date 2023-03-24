@@ -5,7 +5,7 @@ import Feed from "./pages/feed/feed";
 import Hashtags from "./pages/hashtag/hashtags";
 import Login from "./pages/login/login";
 import SignUp from "./pages/signup/signup";
-import UserPage from "./pages/user/User";
+import UserPage from "./pages/user/user";
 
 function App() {
   //notei que o signin e sigup são componentes da primeira pagina, vou colocar na home por hora.
