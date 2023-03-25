@@ -31,6 +31,8 @@ export function UserPostContainer(prop) {
   const isShown = prop.isShown;
 
   const [likes, setLikes] = useState(0); //likes
+  const [filled, setFilled] = useState(false); //altera o coração
+  // const [likers, setLikers] = useState([]); //salva as pessoas que curtiram
 
   const onSubmit = (data) => {
     setEdit(false);
@@ -58,13 +60,25 @@ export function UserPostContainer(prop) {
     try {
       const response = await axios.get(`${url}/likes/${prop.id}`);
       setLikes(response.data.count);
+      // setLikers(response.data.likedUsers);
+
+      const userLikedPost = response.data.likedUsers.find(
+        (user) => user.id == prop.userId
+      );
+      console.log(userLikedPost);
+      console.log(prop.userId);
+
       console.log(response.data.likedUsers);
-      return response.data.likedUsers;
+      if (userLikedPost) {
+        setFilled(true);
+      }
     } catch (error) {
       console.log(error);
     }
   }
-  postLikes();
+  useEffect(() => {
+    postLikes();
+  }, [filled, likes]);
 
   return (
     <>
@@ -97,6 +111,8 @@ export function UserPostContainer(prop) {
               userId={prop.userId}
               setLikes={setLikes}
               likes={likes}
+              filled={filled}
+              setFilled={setFilled}
             />
           </LikeContainer>
           <p>{likes} likes</p>

@@ -166,7 +166,7 @@ export const UserPostContainertwo = styled.div`
     font-size: 11px;
     font-weight: 400;
     line-height: 13px;
-    text-align: center;
+    margin-left: 16px;
     color: #ffffff;
   }
 `;

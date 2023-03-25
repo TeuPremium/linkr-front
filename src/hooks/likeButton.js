@@ -10,10 +10,8 @@ const HeartIcon = styled.div`
   scale: 1.5;
 `;
 
-export function LikeButton({ postId, userId, setLikes, likes }) {
-  const [filled, setFilled] = useState(false);
-  //const [likedby, setLikedBy] = useState([]);
-  //const [likeCount, setLikeCount] = useState(0);
+export function LikeButton(props) {
+  const { postId, userId, setLikes, likes, setFilled, filled } = props;
 
   const handleLikeClick = async () => {
     const token = localStorage.token.replace(/"/g, "");
@@ -31,19 +29,17 @@ export function LikeButton({ postId, userId, setLikes, likes }) {
       try {
         await axios.delete(url, { ...config, data });
         setLikes(likes - 1);
-        alert("descurtiu");
         setFilled(!filled);
-      } catch {
-        alert("Deu errado");
+      } catch (error) {
+        console.log(error);
       }
     } else {
       try {
         await axios.post(url, data, config);
         setLikes(likes + 1);
-        alert("curtiu");
         setFilled(!filled);
       } catch (error) {
-        alert("deu errado");
+        console.log(error);
       }
     }
   };
