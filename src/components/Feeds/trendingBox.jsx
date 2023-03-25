@@ -5,10 +5,7 @@ import axios from "axios"
 import { Link } from "react-router-dom"
 
 export default function TrendingTags(prop) {
-
-
     const url = `${process.env.REACT_APP_API_URL}/rank`
-    // const url = `http://localhost:5000/rank`
 
     const [rank, setRank] = useState()
 
@@ -18,13 +15,9 @@ export default function TrendingTags(prop) {
         promise.catch((error) => alert('An error occured'))
     }, [])
 
- 
-
-
     return (
         <>
             <TrendingBoxContainer data-test="trending">
-
 
                 <HeaderTrending>
                     <h1>trending</h1>
@@ -41,7 +34,6 @@ export default function TrendingTags(prop) {
                         <h1>Loading...</h1>
                     )}
                 </HashtagContainer>
-
 
             </TrendingBoxContainer>
         </>

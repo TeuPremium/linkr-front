@@ -13,46 +13,84 @@ import {
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { UserPostContainer } from "./postContainer";
-import UserPage from "../../pages/user/User";
+import UserPage from "../../pages/user/user";
 import { buildTimeValue } from "@testing-library/user-event/dist/utils";
 import InfiniteScroll from "react-infinite-scroller";
 
-export default function(prop){
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const url = `${process.env.REACT_APP_API_URL}/posts`;
-    console.log(localStorage.userId)
-    const [postArray, setPostArray] = useState("")
-    
-    const {auth, userId} = localStorage
-    console.log(auth)
-    async function onSubmit(data){
-      
-      data.userId = userId;
-      const createPost = await axios.post(url, data).catch((error) => {alert("there was en error publishing your link")});     
-      console.log(data)
-      
+export default function (prop) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const url = `${process.env.REACT_APP_API_URL}/posts`;
+
+  const [postArray, setPostArray] = useState([]);
+  const [disable, setDisable] = useState(false);
+  const [color, setColor] = useState("rgb(24, 119, 242)");
+  const [numPosts, setNumPosts] = useState(10); //para controlar numero de postagens que vai aparecer
+  const [loading, setLoading] = useState(false); //para aparecer loading quando carregar a pagina
+  const isShown = true;
+  
+  const { userId, image } = localStorage;
+
+  const userImage = image.replace('"', "");
+
+  async function onSubmit(data) {
+    data.userId = userId;
+    setColor("grey");
+    setDisable(true);
+    console.log(data);
+
+    await axios
+      .post(url, data)
+      .catch((error) => {
+        alert("there was en error publishing your link");
+      })
+      .then(() => {
+        setColor("rgb(24, 119, 242)");
+        setDisable(false);
+      });
+
+    console.log(data);
+  }
+
+  useEffect(() => {
+    const promise = axios.get(`${url}/${numPosts}`);
+    promise.then(
+      (e) => setPostArray((prevArrey) => prevArrey.concat(e.data)),
+      setLoading(false)
+    );
+    promise.catch((error) =>
+      alert(
+        "An error occured while trying to fetch the posts, please refresh the page"
+      )
+    );
+  }, [numPosts]);
+
+  window.addEventListener("scroll", () => {
+    const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+    if (
+      scrollTop + clientHeight >= scrollHeight - 10 &&
+      postArray.length === numPosts
+    ) {
+      setLoading(true);
+      setNumPosts(numPosts + 10);
     }
-    useEffect( ()=>{
-      const promise = axios.get(`${process.env.REACT_APP_API_URL}/posts`)
-      promise.then((e) => setPostArray(e.data))
-      promise.catch(console.log)
-    } ,[])    
-    
-    const timeline = prop.timeline
-    
-    
-    if(timeline && postArray){
-      console.log(postArray)
-      
-      
-    return(<>
+  });
+
+  const timeline = prop.timeline;
+
+  if (timeline && postArray.length !== 0) {
+    return (
+      <>
         <ContainerFeed>
           <Container>
             <h1>timeline</h1>
 
             <PostContainer>
               <div>
-                <img src={image} />
+                <img src={"https://upload.wikimedia.org/wikipedia/en/0/03/Walter_White_S5B.png"} />
               </div>
 
               <WritePostContainer>
@@ -98,17 +136,11 @@ export default function(prop){
         </ContainerFeed>
       </>
     );
+  } else if (!timeline && postArray.length !== 0) {
+    return <UserPage />;
   } else {
     return (
-      <ContainerFeed>
-        <Container>
-          <h1>UserNamePlaceHolder</h1>
-
-          <UserPostContainer />
-        </Container>
-
-        <TrendingTags />
-      </ContainerFeed>
+      <img src="https://imgs.search.brave.com/WXOcrQtv7vqv7kBbWX1VWRCCfW6u9gXYv6eKryV7_P4/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93d3cu/d3BmYXN0ZXIub3Jn/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDEz/LzA2L2xvYWRpbmct/Z2lmLmdpZg.gif" />
     );
   }
 }
