@@ -11,11 +11,12 @@ import {
   LinkContainer,
   CommentContainer,
 } from "./styles";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import styled from "styled-components";
 import axios from "axios";
 import { LikeButton } from "../../hooks/likeButton";
 import UrlData from "./dataUrl";
+import axios from "axios";
 
 export function UserPostContainer(prop) {
   const [edit, setEdit] = useState(false);
@@ -27,8 +28,13 @@ export function UserPostContainer(prop) {
     formState: { errors },
     watch,
   } = useForm();
-  const url = `${process.env.REACT_APP_API_URL}/posts`;
+  const url = process.env.REACT_APP_API_URL;
   const isShown = prop.isShown;
+
+
+  const [likes, setLikes] = useState(0); //likes
+  const [filled, setFilled] = useState(false); //altera o coração
+  // const [likers, setLikers] = useState([]); //salva as pessoas que curtiram
 
 
   const onSubmit = (data) => {
@@ -44,7 +50,7 @@ export function UserPostContainer(prop) {
     // colocar funcao para deletar post com requisicao para apagar no back
 
     // useEffect(()=>{
-    //   const promise = axios.delete(`${url}`)
+    //   const promise = axios.delete(`${url}/posts`)
     //   promise.then((e) => setDeletePrompt(false))
     //   promise.catch(alert)
     // } ,[])
@@ -52,6 +58,30 @@ export function UserPostContainer(prop) {
     setDeletePrompt(false);
   }
 
+  //para pegar numero de likes no servidor
+  async function postLikes() {
+    try {
+      const response = await axios.get(`${url}/likes/${prop.id}`);
+      setLikes(response.data.count);
+      // setLikers(response.data.likedUsers);
+
+      const userLikedPost = response.data.likedUsers.find(
+        (user) => user.id == prop.userId
+      );
+      console.log(userLikedPost);
+      console.log(prop.userId);
+
+      console.log(response.data.likedUsers);
+      if (userLikedPost) {
+        setFilled(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    postLikes();
+  }, [filled, likes]);
 
   return (
     <>
@@ -79,8 +109,18 @@ export function UserPostContainer(prop) {
         <div>
           <img src={prop.image} />
           <LikeContainer>
-            <LikeButton />
+
+            <LikeButton
+              postId={prop.id}
+              userId={prop.userId}
+              setLikes={setLikes}
+              likes={likes}
+              filled={filled}
+              setFilled={setFilled}
+            />
+
           </LikeContainer>
+          <p>{likes} likes</p>
         </div>
 
         <UsersPosts>

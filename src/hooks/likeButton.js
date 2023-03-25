@@ -8,14 +8,44 @@ const HeartIcon = styled.div`
   scale: 1.5;
 `
 
-export function LikeButton() {
-  const [filled, setFilled] = useState(false)
+
+export function LikeButton(props) {
+  const { postId, userId, setLikes, likes, setFilled, filled } = props;
 
   const handleLikeClick = () => {
     setFilled(!filled)
   }
 
-  const heartIcon = filled ? <FaHeart /> : <FaRegHeart />
+
+    const data = { postId, userId };
+
+    const config = {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    };
+
+    if (filled) {
+      try {
+        await axios.delete(url, { ...config, data });
+        setLikes(likes - 1);
+        setFilled(!filled);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        await axios.post(url, data, config);
+        setLikes(likes + 1);
+        setFilled(!filled);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  const heartIcon = filled ? <FaHeart /> : <FaRegHeart />;
+
 
   return (
     <HeartIcon data-test="like-btn" filled={filled} onClick={handleLikeClick}>
