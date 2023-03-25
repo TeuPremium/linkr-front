@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
-import { AiOutlineHeart } from "react-icons/ai";
+
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 export const TrendingBoxContainer = styled.div`
   height: 406px;
@@ -9,7 +10,8 @@ export const TrendingBoxContainer = styled.div`
   border-radius: 16px;
   margin-top: 232px;
   margin-right: 150px;
-`;
+
+`
 
 export const HeaderTrending = styled.div`
   width: 100%;
@@ -19,12 +21,12 @@ export const HeaderTrending = styled.div`
   background-color: #171717;
   display: flex;
   align-items: center;
-  h1 {
+  h1{
     font-size: 27px;
     font-weight: 700;
     margin-left: 16px;
   }
-`;
+`
 
 export const HashtagContainer = styled.div`
   width: 130px;
@@ -35,10 +37,11 @@ export const HashtagContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   background-color: #171717;
-  h1 {
+  h1{
     font-size: 19px;
+
   }
-`;
+`
 
 export const PostContainer = styled.div`
   height: 209px;
@@ -75,8 +78,8 @@ export const WritePostContainer = styled.div`
         color: white;
       }
     }
-  }
-  input {
+}
+input {
     width: 100%;
     height: 30px;
     left: 501px;
@@ -85,10 +88,10 @@ export const WritePostContainer = styled.div`
     border-radius: 5px;
     border-style: none;
     margin-top: 5px;
-  }
-  input:nth-of-type(2) {
+}
+input:nth-of-type(2){
     height: 66px;
-  }
+}
 `;
 export const UsersPosts = styled.div`
   height: 155px;
@@ -104,6 +107,8 @@ export const Container = styled.div`
   margin-top: 150px;
 `;
 
+
+
 export const LikeContainer = styled.div`
   height: 30px;
   width: 40px;
@@ -112,18 +117,20 @@ export const LikeContainer = styled.div`
   align-items: center;
   margin-left: 22px;
   margin-top: 10px;
-  h1 {
+  h1{
     font-size: 11px;
     margin-top: 6px;
   }
-`;
+`
 
 export const HeartIcon = styled(AiOutlineHeart)`
-  color: #ffffff;
+  color: #FFFFFF;
   scale: 2;
-`;
+`
+
 
 export const ContainerFeed = styled.div`
   display: flex;
   justify-content: space-between;
-`;
+  
+`

@@ -27,7 +27,7 @@ export default function () {
         <UserSearchInput />
         <UserContainer onClick={handleClick}>
           <ArrowDown direction={direction} />
-          <img src={userImage} />
+          <img src={image} />
         </UserContainer>
         {showLogout && <Logout />}
       </ContainerHeader>

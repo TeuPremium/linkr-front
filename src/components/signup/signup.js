@@ -19,7 +19,6 @@ export default function Signup() {
     if (!pictureUrl) return alert("Please fill in the picture field.");
 
     const url = `${process.env.REACT_APP_API_URL}/signup`;
-    // const url = `http://localhost:5000/signup`;
 
     const data = { email, password, username, pictureUrl };
 

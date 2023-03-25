@@ -1,21 +1,21 @@
-import axios from "axios";
-import { useState } from "react";
-import { FaRegHeart, FaHeart } from "react-icons/fa";
-import styled from "styled-components";
-import { authToken } from "./auth";
+import { useState } from 'react'
+import { FaRegHeart, FaHeart } from 'react-icons/fa'
+import styled from 'styled-components'
 
 const HeartIcon = styled.div`
-  color: ${(props) => (props.filled ? "red" : "white")};
+  color: ${(props) => (props.filled ? 'red' : 'white')};
   cursor: pointer;
   scale: 1.5;
-`;
+`
+
 
 export function LikeButton(props) {
   const { postId, userId, setLikes, likes, setFilled, filled } = props;
 
-  const handleLikeClick = async () => {
-    const token = localStorage.token.replace(/"/g, "");
-    const url = `${process.env.REACT_APP_API_URL}/likes`;
+  const handleLikeClick = () => {
+    setFilled(!filled)
+  }
+
 
     const data = { postId, userId };
 
@@ -46,9 +46,10 @@ export function LikeButton(props) {
 
   const heartIcon = filled ? <FaHeart /> : <FaRegHeart />;
 
+
   return (
     <HeartIcon data-test="like-btn" filled={filled} onClick={handleLikeClick}>
       {heartIcon}
     </HeartIcon>
-  );
+  )
 }
