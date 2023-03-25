@@ -25,9 +25,9 @@ import { useNavigate } from "react-router-dom";
 export function UserPostContainer(prop) {
   const {userId} = localStorage
   const sameUser = (userId === prop.e.id)
-  console.log(userId)
-  console.log(sameUser)
-
+  // console.log(userId)
+  // console.log(sameUser)
+  console.log(prop.e.comment)
   const navigate = useNavigate();
   const [edit, setEdit] = useState(false);
   const [comment, setComment] = useState(prop.e.comment);
@@ -63,7 +63,6 @@ export function UserPostContainer(prop) {
     setDeletePrompt(false);
   }
 
-  console.log(comment)
   return (
     <>
       {deletePrompt ? (
@@ -120,13 +119,13 @@ export function UserPostContainer(prop) {
               <form onSubmit={handleSubmit(onSubmit)}>
                 <input
                   autoComplete="off"
-                  defaultValue={comment}
+                  defaultValue={prop.e.comment}
                   {...register("comment")}
                 />
               </form>
             ) : (
               <ReactTagify tagClicked={(tag)=> navigate(`/hashtag/${tag.replace('#', '')}`)}>
-              <h4>{comment}</h4>
+              <h4>{prop.e.comment}</h4>
             </ReactTagify>
             )}
           </CommentContainer>

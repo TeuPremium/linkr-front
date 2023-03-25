@@ -57,6 +57,7 @@ export default function (prop) {
         e.data.comment = data.comment
         e.data.url = data.url
         let array = [e.data].concat(postArray)
+        console.log(postArray)
         setPostArray(array);
         setPosting(false)
       });
@@ -131,12 +132,6 @@ export default function (prop) {
             {postArray.map((e) => (
               <UserPostContainer
                 e={e}
-                username={e.username}
-                image={e.image}
-                url={e.url}
-                comment={e.comment}
-                id={e.postId}
-                urlData={e.urlData}
                 isShown={isShown}
               />
             ))}
