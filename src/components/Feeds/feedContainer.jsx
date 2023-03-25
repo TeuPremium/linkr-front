@@ -16,6 +16,7 @@ import { UserPostContainer } from "./postContainer";
 import UserPage from "../../pages/user/User";
 import { buildTimeValue } from "@testing-library/user-event/dist/utils";
 import InfiniteScroll from "react-infinite-scroller";
+import ReactLoading from 'react-loading';
 
 export default function (prop) {
   const {
@@ -85,9 +86,11 @@ export default function (prop) {
     }
   });
 
+  console.log(postArray)
+
   const timeline = prop.timeline;
 
-  if (timeline && postArray.length !== 0) {
+  if (timeline && postArray) {
    
     return (
       <>
@@ -127,6 +130,7 @@ export default function (prop) {
 
             {postArray.map((e) => (
               <UserPostContainer
+                e={e}
                 username={e.username}
                 image={e.image}
                 url={e.url}
@@ -149,7 +153,9 @@ export default function (prop) {
   else 
   {
     return (
-      <img src="https://imgs.search.brave.com/WXOcrQtv7vqv7kBbWX1VWRCCfW6u9gXYv6eKryV7_P4/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93d3cu/d3BmYXN0ZXIub3Jn/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDEz/LzA2L2xvYWRpbmct/Z2lmLmdpZg.gif" />
+      <div style={{display:"flex", justifyContent:"center", marginTop:"25vh"}}>
+      <ReactLoading type="bubbles" color="#ffffff" height={667} width={375} />
+     </div>
     );
   }
 }
