@@ -10,7 +10,7 @@ const HeartIcon = styled.div`
   scale: 1.5;
 `;
 
-export function LikeButton({ postId, userId }) {
+export function LikeButton({ postId, userId, setLikes, likes }) {
   const [filled, setFilled] = useState(false);
   //const [likedby, setLikedBy] = useState([]);
   //const [likeCount, setLikeCount] = useState(0);
@@ -29,7 +29,8 @@ export function LikeButton({ postId, userId }) {
 
     if (filled) {
       try {
-        const response = await axios.delete(url, { ...config, data });
+        await axios.delete(url, { ...config, data });
+        setLikes(likes - 1);
         alert("descurtiu");
         setFilled(!filled);
       } catch {
@@ -37,7 +38,8 @@ export function LikeButton({ postId, userId }) {
       }
     } else {
       try {
-        const response = await axios.post(url, data, config);
+        await axios.post(url, data, config);
+        setLikes(likes + 1);
         alert("curtiu");
         setFilled(!filled);
       } catch (error) {

@@ -161,6 +161,14 @@ export const UserPostContainertwo = styled.div`
     height: 53px;
     border-radius: 53px;
   }
+  p {
+    font-family: Lato;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 13px;
+    text-align: center;
+    color: #ffffff;
+  }
 `;
 
 export const UsersPosts = styled.div`
