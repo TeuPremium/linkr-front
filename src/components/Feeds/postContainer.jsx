@@ -12,13 +12,24 @@ import {
 } from "./styles";
 import { set, useForm } from "react-hook-form";
 import styled from "styled-components";
-
+import axios  from "axios";
 import { LikeButton } from "../../hooks/likeButton";
 import UrlData from "./dataUrl";
+import { ReactTagify } from "react-tagify";
+import { useNavigate } from "react-router-dom";
+
+
+
 
 export function UserPostContainer(prop) {
+  const {userId} = localStorage
+  const sameUser = (userId === prop.e.id)
+  // console.log(userId)
+  // console.log(sameUser)
+  console.log(prop.e.comment)
+  const navigate = useNavigate();
   const [edit, setEdit] = useState(false);
-  const [comment, setComment] = useState(prop.comment);
+  const [comment, setComment] = useState(prop.e.comment);
   const [deletePrompt, setDeletePrompt] = useState(false);
   const {
     register,
@@ -28,11 +39,11 @@ export function UserPostContainer(prop) {
   } = useForm();
   const url = process.env.REACT_APP_API_URL;
   const isShown = prop.isShown;
-
+  const urlData = {image: prop.e.postImage, description: prop.e.description, title: prop.e.title}
   const [likes, setLikes] = useState(0); //likes
   const [filled, setFilled] = useState(false); //altera o coração
   // const [likers, setLikers] = useState([]); //salva as pessoas que curtiram
-
+  
   const onSubmit = (data) => {
     setEdit(false);
     setComment(data.comment);
@@ -99,7 +110,7 @@ export function UserPostContainer(prop) {
 
       <UserPostContainertwo>
         <div>
-          <img src={prop.image} style={{ objectFit: "cover" }} />
+          <img src={prop.e.image} style={{objectFit:"cover"}}/>
           <LikeContainer>
             <LikeButton
               postId={prop.id}
@@ -115,7 +126,7 @@ export function UserPostContainer(prop) {
 
         <UsersPosts>
           <UserHeader>
-            <h3>{prop.username}</h3>
+            <h3>{prop.e.username}</h3>
 
             {isShown ? (
               <div>
@@ -130,28 +141,31 @@ export function UserPostContainer(prop) {
               <div></div>
             )}
           </UserHeader>
-
+            
           <CommentContainer>
+            
             {edit ? (
               <form onSubmit={handleSubmit(onSubmit)}>
                 <input
                   autoComplete="off"
-                  defaultValue={comment}
+                  defaultValue={prop.e.comment}
                   {...register("comment")}
                 />
               </form>
             ) : (
-              <h4>{comment}</h4>
+              <ReactTagify colors="white" tagClicked={(tag)=> navigate(`/hashtag/${tag.replace('#', '')}`)}>
+              <h4>{prop.e.comment}</h4>
+            </ReactTagify>
             )}
           </CommentContainer>
 
           <LinkContainer>
             <Link
-              to={prop.url}
+              to={prop.e.url}
               target="_blank"
               style={{ textDecoration: "none", color: "#CECECE" }}
             >
-              <UrlData urlData={prop.urlData} url={prop.url} />
+              <UrlData urlData={urlData} url={prop.url}/>
             </Link>
           </LinkContainer>
         </UsersPosts>
