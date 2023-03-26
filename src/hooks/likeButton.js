@@ -15,8 +15,6 @@ export function LikeButton(props) {
   const handleLikeClick = () => {
     setFilled(!filled)
   }
-
-
     const data = { postId, userId };
 
     const config = {

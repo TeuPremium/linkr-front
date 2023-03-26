@@ -16,7 +16,6 @@ import styled from "styled-components";
 import axios from "axios";
 import { LikeButton } from "../../hooks/likeButton";
 import UrlData from "./dataUrl";
-import axios from "axios";
 
 export function UserPostContainer(prop) {
   const [edit, setEdit] = useState(false);
@@ -31,11 +30,9 @@ export function UserPostContainer(prop) {
   const url = process.env.REACT_APP_API_URL;
   const isShown = prop.isShown;
 
-
   const [likes, setLikes] = useState(0); //likes
   const [filled, setFilled] = useState(false); //altera o coração
   // const [likers, setLikers] = useState([]); //salva as pessoas que curtiram
-
 
   const onSubmit = (data) => {
     setEdit(false);
@@ -109,7 +106,6 @@ export function UserPostContainer(prop) {
         <div>
           <img src={prop.image} />
           <LikeContainer>
-
             <LikeButton
               postId={prop.id}
               userId={prop.userId}
@@ -118,7 +114,6 @@ export function UserPostContainer(prop) {
               filled={filled}
               setFilled={setFilled}
             />
-
           </LikeContainer>
           <p>{likes} likes</p>
         </div>
@@ -126,21 +121,19 @@ export function UserPostContainer(prop) {
         <UsersPosts>
           <UserHeader>
             <h3>{prop.username}</h3>
-            
-            { isShown ? ( 
-            <div>
-              <div onClick={() => setDeletePrompt(true)}>
-                <TrashIcon />
+
+            {isShown ? (
+              <div>
+                <div onClick={() => setDeletePrompt(true)}>
+                  <TrashIcon />
+                </div>
+                <div onClick={() => editChange(edit)}>
+                  <PencilIcon />
+                </div>
               </div>
-              <div onClick={() => editChange(edit)}>
-                <PencilIcon />
-              </div>
-            </div>
             ) : (
-            <div></div>
-            )
-            }
-            
+              <div></div>
+            )}
           </UserHeader>
 
           <CommentContainer>
@@ -163,7 +156,7 @@ export function UserPostContainer(prop) {
               target="_blank"
               style={{ textDecoration: "none", color: "#CECECE" }}
             >
-              <UrlData urlData={prop.urlData} url={prop.url}/>
+              <UrlData urlData={prop.urlData} url={prop.url} />
             </Link>
           </LinkContainer>
         </UsersPosts>
