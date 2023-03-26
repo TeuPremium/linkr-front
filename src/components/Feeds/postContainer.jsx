@@ -124,7 +124,7 @@ export function UserPostContainer(prop) {
                 />
               </form>
             ) : (
-              <ReactTagify tagClicked={(tag)=> navigate(`/hashtag/${tag.replace('#', '')}`)}>
+              <ReactTagify colors="white" tagClicked={(tag)=> navigate(`/hashtag/${tag.replace('#', '')}`)}>
               <h4>{prop.e.comment}</h4>
             </ReactTagify>
             )}

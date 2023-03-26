@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Logout from "../logout/logout";
 import UserSearchInput from "../userSearchInput/UserSearchInput";
 import ArrowDown from "./arrowDown";
@@ -23,7 +24,9 @@ export default function () {
   return (
     <>
       <ContainerHeader>
+        <Link to="/timeline">
         <LinkrLogo />
+        </Link>
         <UserSearchInput />
         <UserContainer onClick={handleClick}>
           <ArrowDown direction={direction} />
