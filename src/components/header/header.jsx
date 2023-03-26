@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Logout from "../logout/logout";
-import UserSearchInput from "../userSearchInput/UserSearchInput";
+import UserSearchInput from "../userSearchInput/userSearchInput";
 import ArrowDown from "./arrowDown";
 import LinkrLogo from "./linkrLogo";
 import { ContainerHeader, UserContainer } from "./styled";
@@ -27,7 +27,7 @@ export default function () {
         <UserSearchInput />
         <UserContainer onClick={handleClick}>
           <ArrowDown direction={direction} />
-          <img src={image} />
+          <img src={userImage} />
         </UserContainer>
         {showLogout && <Logout />}
       </ContainerHeader>

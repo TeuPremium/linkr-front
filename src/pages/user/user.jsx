@@ -13,11 +13,14 @@ export default function UserPage() {
 
   useEffect(() => {
     const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/${id}`);
-    promise.then((e) => setUserPostsArray(e.data));
+    promise.then((e) => {
+      setUserPostsArray(e.data);
+      console.log(e.data[0])
+  });
     promise.catch((error) => alert(error.message));
   }, []);
 
-  if (userPostsArray) {
+  if (userPostsArray && Object.keys(userPostsArray[0]).length > 3) {
     return (
       <>
         <Header />
@@ -40,6 +43,25 @@ export default function UserPage() {
                   isShown={isShown}
                 />
               ))}
+            </Container>
+
+            <TrendingTags />
+          </ContainerFeed>
+        </>
+      </>
+    );
+  } else if (userPostsArray && Object.keys(userPostsArray[0]).length === 3) {
+    return (
+      <>
+        <Header />
+        <>
+          <ContainerFeed>
+            <Container>
+              <span>
+                <img src={userPostsArray[0].image} alt="" />
+                <h1>{userPostsArray[0].username}'s Posts</h1>
+              </span>
+
             </Container>
 
             <TrendingTags />

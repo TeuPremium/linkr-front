@@ -11,8 +11,6 @@ export default function Feed(prop) {
 
   return (
     <>
-      {/* colocar imagem por prop no header (é melhor fazer por context) */}
-
       <Header />
       <FeedContainer
         timeline={prop.timeline}
