@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { AiOutlineHeart } from "react-icons/ai";
 
 export const TrendingBoxContainer = styled.div`
   height: 406px;
@@ -160,6 +160,14 @@ export const UserPostContainertwo = styled.div`
     width: 53px;
     height: 53px;
     border-radius: 53px;
+  }
+  p {
+    font-family: Lato;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 13px;
+    margin-left: 16px;
+    color: #ffffff;
   }
 `;
 

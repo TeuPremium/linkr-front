@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { useForm } from "react-hook-form";
 import TrendingTags from "./trendingBox";
 import {
@@ -6,14 +5,11 @@ import {
   Container,
   WritePostContainer,
   PostContainer,
-  LikeContainer,
-  HeartIcon,
-  UsersPosts,
 } from "./styles";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { UserPostContainer } from "./postContainer";
-import UserPage from "../../pages/user/User";
+import UserPage from "../../pages/user/user";
 import { buildTimeValue } from "@testing-library/user-event/dist/utils";
 import InfiniteScroll from "react-infinite-scroller";
 import ReactLoading from 'react-loading';
@@ -25,43 +21,45 @@ export default function (prop) {
     formState: { errors },
   } = useForm();
   const url = `${process.env.REACT_APP_API_URL}/posts`;
+
   const [posting, setPosting] = useState(false);
+
   const [postArray, setPostArray] = useState([]);
   const [disable, setDisable] = useState(false);
   const [color, setColor] = useState("rgb(24, 119, 242)");
   const [numPosts, setNumPosts] = useState(10); //para controlar numero de postagens que vai aparecer
   const [loading, setLoading] = useState(false); //para aparecer loading quando carregar a pagina
   const isShown = true;
-  
+
   const { userId, image } = localStorage;
 
-  let userImage = image.replace('"', '')
-  
+  let userImage = image.replace('"', "");
+
 
   async function onSubmit(data) {
     data.userId = userId;
     setColor("grey");
     setDisable(true);
-    setPosting(true)
+    setPosting(true);
+
     await axios
       .post(url, data)
       .catch((error) => {
         alert("there was en error publishing your link");
-        console.log(error)
-        setPosting(false)
+        console.log(error);
+        setPosting(false);
       })
       .then((e) => {
         setColor("rgb(24, 119, 242)");
         setDisable(false);
-        e.data.image = userImage
-        e.data.comment = data.comment
-        e.data.url = data.url
-        let array = [e.data].concat(postArray)
-        console.log(postArray)
+        e.data.image = userImage;
+        e.data.comment = data.comment;
+        e.data.url = data.url;
+        let array = [e.data].concat(postArray);
         setPostArray(array);
-        setPosting(false)
+        setPosting(false);
       });
-    }
+  }
 
   useEffect(() => {
     const promise = axios.get(`${url}/${numPosts}`);
@@ -133,6 +131,7 @@ export default function (prop) {
               <UserPostContainer
                 e={e}
                 isShown={isShown}
+                userId={userId}
               />
             ))}
             {loading && <p>Loading...</p>}
@@ -144,9 +143,7 @@ export default function (prop) {
     );
   } else if (!timeline && postArray.length !== 0) {
     return <UserPage />;
-  } 
-  else 
-  {
+  } else {
     return (
       <div style={{display:"flex", justifyContent:"center", marginTop:"25vh"}}>
       <ReactLoading type="bubbles" color="#ffffff" height={667} width={375} />

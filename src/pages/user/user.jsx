@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Header from "../../components/header/header";
 import TrendingTags from "../../components/Feeds/trendingBox";
 import { useEffect, useState } from "react";
@@ -13,16 +13,14 @@ export default function UserPage() {
 
   useEffect(() => {
     const promise = axios.get(`${process.env.REACT_APP_API_URL}/user/${id}`);
-    // const promise = axios.get(`http://localhost:5000/user/${id}`);
-    promise.then((e) => setUserPostsArray(e.data));
-    promise.catch((error) =>
-      alert(
-        "An error occured while trying to fetch the posts, please refresh the page"
-      )
-    );
+    promise.then((e) => {
+      setUserPostsArray(e.data);
+      console.log(e.data[0])
+  });
+    promise.catch((error) => alert(error.message));
   }, []);
 
-  if (userPostsArray) {
+  if (userPostsArray && Object.keys(userPostsArray[0]).length > 3) {
     return (
       <>
         <Header />
@@ -30,7 +28,7 @@ export default function UserPage() {
           <ContainerFeed>
             <Container>
               <span>
-                <img src={userPostsArray[0].image} />
+                <img src={userPostsArray[0].image} alt="" />
                 <h1>{userPostsArray[0].username}'s Posts</h1>
               </span>
 
@@ -52,9 +50,31 @@ export default function UserPage() {
         </>
       </>
     );
+  } else if (userPostsArray && Object.keys(userPostsArray[0]).length === 3) {
+    return (
+      <>
+        <Header />
+        <>
+          <ContainerFeed>
+            <Container>
+              <span>
+                <img src={userPostsArray[0].image} alt="" />
+                <h1>{userPostsArray[0].username}'s Posts</h1>
+              </span>
+
+            </Container>
+
+            <TrendingTags />
+          </ContainerFeed>
+        </>
+      </>
+    );
   } else {
     return (
-      <img src="https://imgs.search.brave.com/WXOcrQtv7vqv7kBbWX1VWRCCfW6u9gXYv6eKryV7_P4/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93d3cu/d3BmYXN0ZXIub3Jn/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDEz/LzA2L2xvYWRpbmct/Z2lmLmdpZg.gif" />
+      <img
+        src="https://imgs.search.brave.com/WXOcrQtv7vqv7kBbWX1VWRCCfW6u9gXYv6eKryV7_P4/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93d3cu/d3BmYXN0ZXIub3Jn/L3dwLWNvbnRlbnQv/dXBsb2Fkcy8yMDEz/LzA2L2xvYWRpbmct/Z2lmLmdpZg.gif"
+        alt=""
+      />
     );
   }
 }
