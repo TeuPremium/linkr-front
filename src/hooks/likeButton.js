@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import styled from "styled-components";

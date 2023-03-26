@@ -65,10 +65,6 @@ export function UserPostContainer(prop) {
       const userLikedPost = response.data.likedUsers.find(
         (user) => user.id == prop.userId
       );
-      console.log(userLikedPost);
-      console.log(prop.userId);
-
-      console.log(response.data.likedUsers);
       if (userLikedPost) {
         setFilled(true);
       }
