@@ -24,7 +24,7 @@ import { useNavigate } from "react-router-dom";
 export function UserPostContainer(prop) {
   const {userId} = localStorage
   const sameUser = (userId === prop.e.id)
-  console.log(prop)
+  //console.log(prop)
   // console.log(userId)
   // console.log(sameUser)
   console.log(prop.e.comment)
