@@ -5,7 +5,6 @@ import TrashIcon from "../../assets/styles/trashIcon";
 import {
   UserPostContainertwo,
   LikeContainer,
-  HeartIcon,
   UsersPosts,
   UserHeader,
   LinkContainer,
@@ -13,7 +12,7 @@ import {
 } from "./styles";
 import { set, useForm } from "react-hook-form";
 import styled from "styled-components";
-import axios from "axios";
+
 import { LikeButton } from "../../hooks/likeButton";
 import UrlData from "./dataUrl";
 
@@ -100,7 +99,7 @@ export function UserPostContainer(prop) {
 
       <UserPostContainertwo>
         <div>
-          <img src={prop.image} />
+          <img src={prop.image} style={{ objectFit: "cover" }} />
           <LikeContainer>
             <LikeButton
               postId={prop.id}
