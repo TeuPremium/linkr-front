@@ -38,6 +38,7 @@ export function LikeButton(props) {
         await axios.post(url, data, config);
         setLikes(likes + 1);
         setFilled(!filled);
+        console.log("oi");
       } catch (error) {
         console.log(error);
       }
