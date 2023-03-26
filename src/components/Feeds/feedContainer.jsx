@@ -132,7 +132,7 @@ export default function (prop) {
                 id={e.postId}
                 urlData={e.urlData}
                 isShown={isShown}
-                userId={e.id}
+                userId={userId}
               />
             ))}
             {loading && <p>Loading...</p>}

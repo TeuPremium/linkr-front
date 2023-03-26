@@ -10,7 +10,7 @@ import {
   LinkContainer,
   CommentContainer,
 } from "./styles";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import styled from "styled-components";
 
 import { LikeButton } from "../../hooks/likeButton";
@@ -26,8 +26,12 @@ export function UserPostContainer(prop) {
     formState: { errors },
     watch,
   } = useForm();
-  const url = `${process.env.REACT_APP_API_URL}/posts`;
+  const url = process.env.REACT_APP_API_URL;
   const isShown = prop.isShown;
+
+  const [likes, setLikes] = useState(0); //likes
+  const [filled, setFilled] = useState(false); //altera o coração
+  // const [likers, setLikers] = useState([]); //salva as pessoas que curtiram
 
   const onSubmit = (data) => {
     setEdit(false);
@@ -42,13 +46,34 @@ export function UserPostContainer(prop) {
     // colocar funcao para deletar post com requisicao para apagar no back
 
     // useEffect(()=>{
-    //   const promise = axios.delete(`${url}`)
+    //   const promise = axios.delete(`${url}/posts`)
     //   promise.then((e) => setDeletePrompt(false))
     //   promise.catch(alert)
     // } ,[])
 
     setDeletePrompt(false);
   }
+
+  //para pegar numero de likes no servidor
+  async function postLikes() {
+    try {
+      const response = await axios.get(`${url}/likes/${prop.id}`);
+      setLikes(response.data.count);
+      // setLikers(response.data.likedUsers);
+
+      const userLikedPost = response.data.likedUsers.find(
+        (user) => user.id == prop.userId
+      );
+      if (userLikedPost) {
+        setFilled(true);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    postLikes();
+  }, [filled, likes]);
 
   return (
     <>
@@ -76,8 +101,16 @@ export function UserPostContainer(prop) {
         <div>
           <img src={prop.image} style={{ objectFit: "cover" }} />
           <LikeContainer>
-            <LikeButton postId={prop.id} userId={prop.userId} />
+            <LikeButton
+              postId={prop.id}
+              userId={prop.userId}
+              setLikes={setLikes}
+              likes={likes}
+              filled={filled}
+              setFilled={setFilled}
+            />
           </LikeContainer>
+          <p>{likes} likes</p>
         </div>
 
         <UsersPosts>

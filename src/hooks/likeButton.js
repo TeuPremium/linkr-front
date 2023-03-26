@@ -2,7 +2,6 @@ import axios from "axios";
 import { useState } from "react";
 import { FaRegHeart, FaHeart } from "react-icons/fa";
 import styled from "styled-components";
-import { authToken } from "./auth";
 
 const HeartIcon = styled.div`
   color: ${(props) => (props.filled ? "red" : "white")};
@@ -10,10 +9,8 @@ const HeartIcon = styled.div`
   scale: 1.5;
 `;
 
-export function LikeButton({ postId, userId }) {
-  const [filled, setFilled] = useState(false);
-  //const [likedby, setLikedBy] = useState([]);
-  //const [likeCount, setLikeCount] = useState(0);
+export function LikeButton(props) {
+  const { postId, userId, setLikes, likes, setFilled, filled } = props;
 
   const handleLikeClick = async () => {
     const token = localStorage.token.replace(/"/g, "");
@@ -29,19 +26,19 @@ export function LikeButton({ postId, userId }) {
 
     if (filled) {
       try {
-        const response = await axios.delete(url, { ...config, data });
-        alert("descurtiu");
+        await axios.delete(url, { ...config, data });
+        setLikes(likes - 1);
         setFilled(!filled);
-      } catch {
-        alert("Deu errado");
+      } catch (error) {
+        console.log(error);
       }
     } else {
       try {
-        const response = await axios.post(url, data, config);
-        alert("curtiu");
+        await axios.post(url, data, config);
+        setLikes(likes + 1);
         setFilled(!filled);
       } catch (error) {
-        alert("deu errado");
+        console.log(error);
       }
     }
   };

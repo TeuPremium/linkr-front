@@ -9,11 +9,9 @@ export default function () {
   const [showLogout, setShowLogout] = useState(false);
   const [direction, setDirection] = useState("down");
 
-
   const { userId, image } = localStorage;
 
-
-  const userImage = image.replace('"', '')
+  const userImage = image.replace('"', "");
 
   const handleClick = () => {
     setDirection(direction === "down" ? "up" : "down");
