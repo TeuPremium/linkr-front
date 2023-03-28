@@ -48,8 +48,11 @@ export function UserPostContainer(prop) {
   // const [likers, setLikers] = useState([]); //salva as pessoas que curtiram
   
   const onSubmit = (data) => {
-    setEdit(false);
-    setComment(data.comment);
+    console.log(data)
+    const promise = axios.put(`${url}/posts/${postId}`, data)
+      promise.then((e) => {setComment(data.comment); setEdit(false);})
+      promise.catch((e) => {alert(e); setEdit(false);})
+    
   };
 
   function editChange(boolean) {
@@ -161,7 +164,7 @@ export function UserPostContainer(prop) {
               </form>
             ) : (
               <ReactTagify colors="white" tagClicked={(tag)=> navigate(`/hashtag/${tag.replace('#', '')}`)}>
-              <h4>{prop.e.comment}</h4>
+              <h4>{comment}</h4>
             </ReactTagify>
             )}
           </CommentContainer>
