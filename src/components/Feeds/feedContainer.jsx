@@ -85,8 +85,6 @@ export default function (prop) {
     }
   });
 
-  console.log(postArray)
-
   const timeline = prop.timeline;
 
   if (timeline && postArray) {
