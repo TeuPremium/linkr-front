@@ -9,6 +9,11 @@ import {
   UserHeader,
   LinkContainer,
   CommentContainer,
+  DeleteContainer,
+  Button,
+  Container,
+  ViewPortContainer,
+  ButtonContainer
 } from "./styles";
 import { set, useForm } from "react-hook-form";
 import styled from "styled-components";
@@ -23,26 +28,22 @@ import { useNavigate } from "react-router-dom";
 
 export function UserPostContainer(prop) {
   const {userId} = localStorage
-  const sameUser = (userId === prop.e.id)
-  console.log(prop)
-  // console.log(userId)
-  // console.log(sameUser)
-  console.log(prop.e.comment)
+  
   const navigate = useNavigate();
+  
   const [edit, setEdit] = useState(false);
-  const [comment, setComment] = useState(prop.e.comment);
   const [deletePrompt, setDeletePrompt] = useState(false);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    watch,
-  } = useForm();
-  const url = process.env.REACT_APP_API_URL;
-  const isShown = prop.isShown;
-  const urlData = {image: prop.e.postImage, description: prop.e.description, title: prop.e.title}
   const [likes, setLikes] = useState(0); //likes
   const [filled, setFilled] = useState(false); //altera o coração
+  const [comment, setComment] = useState(prop.e.comment); //comentario
+  const {postId} = prop.e
+
+  const { register,handleSubmit,formState: { errors },watch } = useForm();
+  
+  const url = process.env.REACT_APP_API_URL;
+  const urlData = {image: prop.e.postImage, description: prop.e.description, title: prop.e.title}
+  
+  const sameUser = (parseInt(userId) === parseInt(prop.e.id))
   // const [likers, setLikers] = useState([]); //salva as pessoas que curtiram
   
   const onSubmit = (data) => {
@@ -55,13 +56,10 @@ export function UserPostContainer(prop) {
   }
 
   function deletePost() {
-    // colocar funcao para deletar post com requisicao para apagar no back
-
-    // useEffect(()=>{
-    //   const promise = axios.delete(`${url}/posts`)
-    //   promise.then((e) => setDeletePrompt(false))
-    //   promise.catch(alert)
-    // } ,[])
+      const promise = axios.delete(`${url}/posts/${postId}`)
+      promise.then((e) => {setDeletePrompt(false); console.log(e)})
+      promise.catch(alert)
+   
 
     setDeletePrompt(false);
   }
@@ -69,7 +67,7 @@ export function UserPostContainer(prop) {
   //para pegar numero de likes no servidor
   async function postLikes() {
     try {
-      const response = await axios.get(`${url}/likes/${prop.id}`);
+      const response = await axios.get(`${url}/likes/${prop.e.id}`);
       setLikes(response.data.count);
       // setLikers(response.data.likedUsers);
 
@@ -95,14 +93,14 @@ export function UserPostContainer(prop) {
             <div>
               <h2>Are you sure you want to delete this post?</h2>
             </div>
-            <Container>
+            <ButtonContainer>
               <Button onClick={() => setDeletePrompt(false)} color="white">
                 <div>No, go back!</div>
               </Button>
               <Button onClick={() => deletePost()} color="#1877F2">
                 <div>Yes, delete!</div>
               </Button>
-            </Container>
+            </ButtonContainer>
           </DeleteContainer>
         </ViewPortContainer>
       ) : (
@@ -111,11 +109,11 @@ export function UserPostContainer(prop) {
 
       <UserPostContainertwo>
         <div>
-          <img src={prop.e.image} style={{objectFit:"cover"}}/>
+          <img loading="lazy" src={prop.e.image} style={{objectFit:"cover"}}/>
           <LikeContainer>
             <LikeButton
-              postId={prop.id}
-              userId={prop.userId}
+              postId={prop.e.id}
+              userId={prop.e.userId}
               setLikes={setLikes}
               likes={likes}
               filled={filled}
@@ -129,7 +127,7 @@ export function UserPostContainer(prop) {
           <UserHeader>
             <h3>{prop.e.username}</h3>
 
-            {isShown ? (
+            {sameUser ? (
               <div>
                 <div onClick={() => setDeletePrompt(true)}>
                   <TrashIcon />
@@ -175,53 +173,3 @@ export function UserPostContainer(prop) {
   );
 }
 
-const DeleteContainer = styled.div`
-  width: 41vw;
-  height: 300px;
-  position: fixed;
-  top: 35vh;
-  left: 30vw;
-  background-color: #333333;
-  border-radius: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding-left: 60px;
-  padding-right: 60px;
-  padding-bottom: 65px;
-  h2 {
-    font-family: "Lato";
-    font-style: normal;
-    font-weight: 700;
-    font-size: 34px;
-    line-height: 41px;
-    text-align: center;
-    color: #ffffff;
-  }
-`;
-
-const Button = styled.div`
-  width: 134px;
-  height: 37px;
-  box-sizing: border-box;
-  margin-left: 10px;
-  background-color: ${(prop) => prop.color};
-  border-radius: 5px;
-`;
-const Container = styled.div`
-  display: flex;
-  width: 100%;
-  padding-left: 20px;
-  padding-right: 30px;
-  justify-content: space-between;
-`;
-
-const ViewPortContainer = styled.div`
-  width: 1500vh;
-  height: 150vh;
-  position: fixed;
-  top: -50%;
-  left: -30%;
-  z-index: 3;
-  background: rgba(255, 255, 255, 0.6);
-`;
