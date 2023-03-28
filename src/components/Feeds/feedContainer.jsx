@@ -10,8 +10,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { UserPostContainer } from "./postContainer";
 import UserPage from "../../pages/user/user";
-import { buildTimeValue } from "@testing-library/user-event/dist/utils";
-import InfiniteScroll from "react-infinite-scroller";
 import ReactLoading from 'react-loading';
 
 export default function (prop) {
@@ -21,8 +19,6 @@ export default function (prop) {
     formState: { errors },
   } = useForm();
   const url = `${process.env.REACT_APP_API_URL}/posts`;
-
-  const [posting, setPosting] = useState(false);
 
   const [postArray, setPostArray] = useState([]);
   const [disable, setDisable] = useState(false);
@@ -40,14 +36,13 @@ export default function (prop) {
     data.userId = userId;
     setColor("grey");
     setDisable(true);
-    setPosting(true);
 
     await axios
       .post(url, data)
       .catch((error) => {
         alert("there was en error publishing your link");
         console.log(error);
-        setPosting(false);
+        setDisable(false);
       })
       .then((e) => {
         setColor("rgb(24, 119, 242)");
@@ -57,7 +52,6 @@ export default function (prop) {
         e.data.url = data.url;
         let array = [e.data].concat(postArray);
         setPostArray(array);
-        setPosting(false);
       });
   }
 

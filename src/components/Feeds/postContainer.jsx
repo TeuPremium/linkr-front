@@ -48,6 +48,10 @@ export function UserPostContainer(prop) {
   // const [likers, setLikers] = useState([]); //salva as pessoas que curtiram
   
   const onSubmit = (data) => {
+    console.log(data)
+    const promise = axios.put(`${url}/posts/${postId}`, data)
+      promise.then((e) => {})
+      promise.catch(alert)
     setEdit(false);
     setComment(data.comment);
   };
