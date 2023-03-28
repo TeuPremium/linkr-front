@@ -242,3 +242,62 @@ export const ContainerTextUrl = styled.div`
     text-align: left;
   }
 `;
+
+export const Button = styled.div`
+  width: 134px;
+  height: 37px;
+  box-sizing: border-box;
+  margin-left: 10px;
+  background-color: ${(prop) => prop.color};
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+
+export const ViewPortContainer = styled.div`
+  width: 1500vh;
+  height: 150vh;
+  position: fixed;
+  top: -50%;
+  left: -30%;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.6);
+`;
+
+export const DeleteContainer = styled.div`
+  width: 41vw;
+  height: 300px;
+  position: fixed;
+  top: 35vh;
+  left: 30vw;
+  background-color: #333333;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 60px;
+  padding-right: 60px;
+  padding-bottom: 65px;
+  h2 {
+    font-family: "Lato";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 34px;
+    line-height: 41px;
+    text-align: center;
+    color: #ffffff;
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 30px;
+  justify-content: space-between;
+  p{
+    font-size: 23px;
+  }
+`
