@@ -36,6 +36,7 @@ export function UserPostContainer(prop) {
   const [likes, setLikes] = useState(0); //likes
   const [filled, setFilled] = useState(false); //altera o coração
   const [comment, setComment] = useState(prop.e.comment); //comentario
+  const [deletedPost, setDeletedPost] = useState(false)
   const {postId} = prop.e
 
   const { register,handleSubmit,formState: { errors },watch } = useForm();
@@ -57,9 +58,9 @@ export function UserPostContainer(prop) {
 
   function deletePost() {
       const promise = axios.delete(`${url}/posts/${postId}`)
-      promise.then((e) => {setDeletePrompt(false); console.log(e)})
+      promise.then((e) => {setDeletePrompt(false); setDeletedPost(true)})
       promise.catch(alert)
-   
+
 
     setDeletePrompt(false);
   }
@@ -85,6 +86,13 @@ export function UserPostContainer(prop) {
     postLikes();
   }, [filled, likes]);
 
+  if(deletedPost){
+    return(
+      <>
+      </>
+    )
+  }
+
   return (
     <>
       {deletePrompt ? (
@@ -95,10 +103,10 @@ export function UserPostContainer(prop) {
             </div>
             <ButtonContainer>
               <Button onClick={() => setDeletePrompt(false)} color="white">
-                <div>No, go back!</div>
+                <div ><p style={{color:"#1877F2"}}>No, go back!</p></div>
               </Button>
               <Button onClick={() => deletePost()} color="#1877F2">
-                <div>Yes, delete!</div>
+                <div><p>Yes, delete!</p></div>
               </Button>
             </ButtonContainer>
           </DeleteContainer>

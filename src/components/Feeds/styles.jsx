@@ -250,6 +250,9 @@ export const Button = styled.div`
   margin-left: 10px;
   background-color: ${(prop) => prop.color};
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 
@@ -294,4 +297,7 @@ export const ButtonContainer = styled.div`
   padding-left: 20px;
   padding-right: 30px;
   justify-content: space-between;
+  p{
+    font-size: 23px;
+  }
 `
